@@ -1,0 +1,2 @@
+# Costcraft
+static website
