@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finishing Cost Estimator</title>
+    <link rel="stylesheet" href="assets/css/page style.css">
+</head>
+<body>
+    <main class="calculator-container">
+        <h1>Finishing Cost Estimator</h1>
+    <main>
+        <section class="card">
+            <h2>Floor Finishes</h2>
+            <table id="floorFinishTable">
+                <thead>
+                    <tr>
+                        <th>Flooring Type</th>
+                        <th>Quantity</th>
+                        <th>Unit Price (Ksh)</th>
+                        <th>Labor Units</th>
+                        <th>Cost per Labor Unit (Ksh)</th>
+                        <th>Total Cost (Ksh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="floor-finish-row">
+                        <td>
+                            <select title="Select a flooring type">
+                                <option value="hardwood">Hardwood</option>
+                                <option value="laminate">Laminate</option>
+                                <option value="vinyl">Vinyl</option>
+                                <option value="tile">Tile</option>
+                                <option value="carpet">Carpet</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="floor-finish-quantity" placeholder="0" title="Enter quantity"></td>
+                        <td><input type="number" class="floor-finish-unit-price" placeholder="0" title="Enter unit price"></td>
+                        <td><input type="number" class="floor-finish-labor-unit" placeholder="0" title="Enter labor units"></td>
+                        <td><input type="number" class="floor-finish-labor-cost" placeholder="0" title="Enter cost per labor unit"></td>
+                        <td><input type="text" class="floor-finish-total-cost" readonly title="Calculated total cost"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <!-- Buttons for Adding & Deleting Rows -->
+            <button onclick="addFloorFinishRow()">Add Row</button>
+            <button onclick="deleteLastFloorFinishRow()">Delete Last Row</button>
+        
+            <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                <label>Total Floor Finish Cost:</label>
+                <input type="number" id="totalFloorFinishCost" readonly title="Total Cost" style="width: 20%;">
+            </div>
+        </section>        
+     
+
+        <section class="card">
+            <h2>Wall Finishes</h2>
+            <table id="wallFinishTable">
+                <thead>
+                    <tr>
+                        <th>Wall Finish Type</th>
+                        <th>Quantity</th>
+                        <th>Unit Price (Ksh)</th>
+                        <th>Labor Units</th>
+                        <th>Cost per Labor Unit (Ksh)</th>
+                        <th>Total Cost (Ksh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="wall-finish-row">
+                        <td>
+                            <select title="Select a wall finish type">
+                                <option value="paint">Paint</option>
+                                <option value="wallpaper">Wallpaper</option>
+                                <option value="wood_paneling">Wood Paneling</option>
+                                <option value="stucco">Stucco</option>
+                                <option value="brick">Brick</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="wall-finish-quantity" placeholder="0" title="Enter quantity"></td>
+                        <td><input type="number" class="wall-finish-unit-price" placeholder="0" title="Enter unit price"></td>
+                        <td><input type="number" class="wall-finish-labor-unit" placeholder="0" title="Enter labor units"></td>
+                        <td><input type="number" class="wall-finish-labor-cost" placeholder="0" title="Enter cost per labor unit"></td>
+                        <td><input type="text" class="wall-finish-total-cost" readonly title="Calculated total cost"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <!-- Buttons for Adding & Deleting Rows -->
+            <button onclick="addWallFinishRow()">Add Row</button>
+            <button onclick="deleteLastWallFinishRow()">Delete Last Row</button>
+        
+            <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                <label>Total Wall Finish Cost:</label>
+                <input type="number" id="totalWallFinishCost" readonly title="Total Cost" style="width: 20%;">
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Countertop Finishes</h2>
+            <table id="countertopFinishTable">
+                <thead>
+                    <tr>
+                        <th>Countertop Finish Type</th>
+                        <th>Quantity</th>
+                        <th>Unit Price (Ksh)</th>
+                        <th>Labor Units</th>
+                        <th>Cost per Labor Unit (Ksh)</th>
+                        <th>Total Cost (Ksh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="countertop-finish-row">
+                        <td>
+                            <select title="Select a countertop finish type">
+                                <option value="granite">Granite</option>
+                                <option value="quartz">Quartz</option>
+                                <option value="marble">Marble</option>
+                                <option value="laminate">Laminate</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="countertop-finish-quantity" placeholder="0" title="Enter quantity"></td>
+                        <td><input type="number" class="countertop-finish-unit-price" placeholder="0" title="Enter unit price"></td>
+                        <td><input type="number" class="countertop-finish-labor-unit" placeholder="0" title="Enter labor units"></td>
+                        <td><input type="number" class="countertop-finish-labor-cost" placeholder="0" title="Enter cost per labor unit"></td>
+                        <td><input type="text" class="countertop-finish-total-cost" readonly title="Calculated total cost"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <!-- Buttons for Adding & Deleting Rows -->
+            <button onclick="addCountertopFinishRow()">Add Row</button>
+            <button onclick="deleteLastCountertopFinishRow()">Delete Last Row</button>
+        
+            <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                <label>Total Countertop Finish Cost:</label>
+                <input type="number" id="totalCountertopFinishCost" readonly title="Total Cost" style="width: 20%;">
+            </div>
+        </section>
+        
+
+        <section class="card">
+            <h2>Exterior Finishes</h2>
+            <table id="exteriorFinishTable">
+                <thead>
+                    <tr>
+                        <th>Exterior Finish Type</th>
+                        <th>Quantity</th>
+                        <th>Unit Price (Ksh)</th>
+                        <th>Labor Units</th>
+                        <th>Cost per Labor Unit (Ksh)</th>
+                        <th>Total Cost (Ksh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="exterior-finish-row">
+                        <td>
+                            <select title="Select an exterior finish type">
+                                <option value="siding">Siding</option>
+                                <option value="stucco">Stucco</option>
+                                <option value="brick">Brick</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="exterior-finish-quantity" placeholder="0" title="Enter quantity"></td>
+                        <td><input type="number" class="exterior-finish-unit-price" placeholder="0" title="Enter unit price"></td>
+                        <td><input type="number" class="exterior-finish-labor-unit" placeholder="0" title="Enter labor units"></td>
+                        <td><input type="number" class="exterior-finish-labor-cost" placeholder="0" title="Enter cost per labor unit"></td>
+                        <td><input type="text" class="exterior-finish-total-cost" readonly title="Calculated total cost"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <!-- Buttons for Adding & Deleting Rows -->
+            <button onclick="addExteriorFinishRow()">Add Row</button>
+            <button onclick="deleteLastExteriorFinishRow()">Delete Last Row</button>
+        
+            <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                <label>Total Exterior Finish Cost:</label>
+                <input type="number" id="totalExteriorFinishCost" readonly title="Total Cost" style="width: 20%;">
+            </div>
+        </section>
+        
+
+            <section>
+                <section class="card">
+                    <h2>Trim and Molding Finishes</h2>
+                    <table id="trimMoldingTable" border="1">
+                      <thead>
+                        <tr>
+                          <th>Molding Type</th>
+                          <th>Quantity</th>
+                          <th>Unit Price (Ksh)</th>
+                          <th>Labor Units</th>
+                          <th>Cost per Labor Unit (Ksh)</th>
+                          <th>Total Cost (Ksh)</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Sample row -->
+                        <tr class="trim-molding-row">
+                          <td>
+                            <select title="Select a molding type">
+                              <option value="crown">Crown Molding</option>
+                              <option value="baseboards">Baseboards</option>
+                              <option value="casings">Window & Door Casings</option>
+                            </select>
+                          </td>
+                          <td><input type="number" class="tm-quantity" placeholder="0" title="Enter quantity"></td>
+                          <td><input type="number" class="tm-unit-price" placeholder="0" title="Enter unit price"></td>
+                          <td><input type="number" class="tm-labor-units" placeholder="0" title="Enter labor units"></td>
+                          <td><input type="number" class="tm-labor-cost" placeholder="0" title="Enter cost per labor unit"></td>
+                          <td><input type="text" class="tm-total-cost" readonly title="Calculated total cost"></td>
+                          <td><button class="deleteRowButton" onclick="deleteTrimMoldingRow(this)">Delete</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <!-- Buttons below the table -->
+                    <div style="margin-top: 1rem;">
+                      <button onclick="addTrimMoldingRow()">Add Row</button>
+                    </div>
+                    
+                    <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                      <label>Total Trim and Molding Cost:</label>
+                      <input type="number" id="totalTrimMoldingCost" readonly title="Total Cost" style="width: 20%;">
+                    </div>
+                  </section>
+                  <section class="card">
+                    <h2>Painting Costs</h2>
+                    <table id="paintingCostTable">
+                        <thead>
+                            <tr>
+                                <th>Type of Painting</th>
+                                <th>Paint Base</th>
+                                <th>House Part</th>
+                                <th>Paint Type</th>
+                                <th>Quantity (Liters)</th>
+                                <th>Unit Price (Ksh)</th>
+                                <th>Labor Units</th>
+                                <th>Cost per Labor Unit (Ksh)</th>
+                                <th>Total Cost (Ksh)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="painting-cost-row">
+                                <td>
+                                    <select title="Select type of painting">
+                                        <option value="interior">Interior</option>
+                                        <option value="exterior">Exterior</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select title="Select paint base">
+                                        <option value="oil">Oil-Based</option>
+                                        <option value="water">Water-Based</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select title="Select house part">
+                                        <option value="walls">Walls</option>
+                                        <option value="ceiling">Ceiling</option>
+                                        <option value="doors">Doors</option>
+                                        <option value="trim">Trim & Molding</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select title="Select paint type">
+                                        <option value="matte">Matte</option>
+                                        <option value="eggshell">Eggshell</option>
+                                        <option value="satin">Satin</option>
+                                        <option value="semi-gloss">Semi-Gloss</option>
+                                        <option value="high-gloss">High-Gloss</option>
+                                    </select>
+                                </td>
+                                <td><input type="number" class="paint-quantity" placeholder="0" title="Enter quantity"></td>
+                                <td><input type="number" class="paint-unit-price" placeholder="0" title="Enter unit price"></td>
+                                <td><input type="number" class="paint-labor-units" placeholder="0" title="Enter labor units"></td>
+                                <td><input type="number" class="paint-labor-cost" placeholder="0" title="Enter cost per labor unit"></td>
+                                <td><input type="text" class="paint-total-cost" readonly title="Calculated total cost"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- Buttons for Adding & Deleting Rows -->
+                    <button onclick="addPaintingRow()">Add Row</button>
+                    <button onclick="deleteLastPaintingRow()">Delete Last Row</button>
+                    
+                    <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                        <label>Total Painting Cost:</label>
+                        <input type="number" id="totalPaintingCost" readonly title="Total Cost" style="width: 20%;">
+                    </div>
+                </section>
+                  <section class="card">
+                    <h2>Total Finishing Cost</h2>
+                    <div class="total-cost" style="width: 100%; margin-top: 1rem;">
+                        <label>Total Finishing Cost:</label>
+                        <input type="number" id="totalFinishingCost" readonly title="Total Cost" style="width: 20%;">
+                    </div>
+                </section>                           
+    </main>
+    <script src="/assets/js/Finishing cost.js"></script>
+    <footer>
+        <a href="Contact subpages/contact details page.html">Contact Us</a>
+        <a href="/Help center.html">Help</a>
+        <a href="/Company.html">About</a>
+    </footer>
+</body>
+</html>

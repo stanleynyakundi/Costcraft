@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Cost Estimation Templates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f5f6fa;
+            --highlight: #f1c40f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .template-list img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .template-list img:hover {
+            transform: scale(1.05);
+        }
+
+        .template-list li {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-list a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .cta-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 data-aos="fade-down">Templates for Estimation</h1>
+            <p data-aos="fade-up">Download and customize your construction estimation templates in Excel.</p>
+        </div>
+    </header>
+    <div class="container">
+        <article class="article-content" data-aos="fade-up">
+            <section class="template-category">
+                <h2>Introduction</h2>
+                <p>Welcome to our collection of modern construction estimation templates. These tools are structured for maximum efficiency in project management, offering clarity and real-time data manipulation using formulas and industry standards.</p>
+            </section>
+
+            <section class="template-category">
+                <h2>Residential Construction</h2>
+                <ul class="template-list">
+                    <li>
+                        <img src="/assets/images/templates/residential 1.jpg" alt="Residential Template 1">
+                        <a href="https://drive.google.com/file/d/1RA6_JvWbFk_CEiPa0iODIuAS8o6lgB4W/view?usp=sharing" target="_blank">Download Template 1</a>
+                    </li>
+                    <li>
+                        <img src="/assets/images/templates/residential 2.jpg" alt="Residential Template 2">
+                        <a href="https://drive.google.com/file/d/1RA6_JvWbFk_CEiPa0iODIuAS8o6lgB4W/view?usp=sharing" target="_blank">Download Template 2</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="template-category">
+                <h2>Download Your Estimate</h2>
+                <p>Click the button below to download your personalized estimation file prefilled with your project details.</p>
+                <button class="cta-button" id="downloadTemplateBtn">
+                    <i class="fa fa-download"></i> Download Filled Estimation
+                </button>
+            </section>
+
+            <section class="template-category">
+                <h2>Need Help?</h2>
+                <p>If you have any questions or need custom templates, feel free to <a href="Contact subpages/contact details page.html">contact our support team</a>.</p>
+            </section>
+        </article>
+    </div>
+
+    <footer>
+        &copy; 2025 CostCraft. All Rights Reserved.
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+    </script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script>
+        // Existing downloadTemplateBtn script remains the same...
+document.getElementById("downloadTemplateBtn")
+  .addEventListener("click", async () => {
+    try {
+      // 1) fetch the .xlsx template
+      const resp = await fetch("/assets/Templates/Template1.xlsx");
+      if(!resp.ok) throw new Error(`Fetch failed: ${resp.status}`);
+      const buf = await resp.arrayBuffer();
+
+      // 2) parse it
+      const wb = XLSX.read(buf, { type: "array" });
+      const ws = wb.Sheets["Sheet1"];
+      if(!ws) throw new Error("Sheet1 not found");
+
+      const savedData = JSON.parse(localStorage.getItem('finishingCostData') || '{}');
+
+      // 3) define your construction elements & storage‐key mapping
+      const elements = [
+        { name: "Excavation",      totalKey: "totalExcavationCost",        materialKey: "materialExcavationCost"    },
+        { name: "Foundation",      totalKey: "totalFoundationCost",       materialKey: "materialFoundationCost"    },
+        { name: "Flooring",        totalKey: "flooringTotal",          materialKey: "materialFlooringCost"      },
+        { name: "Beams",           totalKey: "totalBeamCost",               materialKey: "materialBeamCost"          },
+        { name: "Columns",         totalKey: "totalColumnCost",             materialKey: "materialColumnCost"        },
+        { name: "Walls",           totalKey: "totalWallingCost",              materialKey: "materialWallingCost"       },
+        { name: "Doors and Windows", totalKey: "totalDoorWindowCost",      materialKey: "materialDoorWindowCost"    },
+        { name: "Ceiling",         totalKey: "ceilingTotal",            materialKey: "materialCeilingCost"       },
+        { name: "Roofing",         totalKey: "totalRoofingcost",             materialKey: "roofMaterial"       },
+        { name: "HVAC",         totalKey: "totalHVACCost",            materialKey: "roofMaterial"       },
+        { name: "Drainage",         totalKey: "totalWaterDrainageCost",            materialKey: "roofMaterial"       },
+        { name: "Plumbing",         totalKey: "totalRoofingcost",            materialKey: "roofMaterial"       },
+        { name: "Electricity",         totalKey: "totalLightingCost",             materialKey: "roofMaterial"       },
+        { name: "Lighting",         totalKey: "totalLightingCost",              materialKey: "roofMaterial"       },
+        { name: "Floor finish",         totalKey: "totalFloorFinishCost",              materialKey: "materialFloorFinishCost"       },
+        { name: "Wall finish",         totalKey: "wallFinishTotal",             materialKey: "materialWallFinishCost"       },
+        { name: "Counter-top finish",         totalKey: "countertopFinishTotal",          materialKey: "materialCountertopFinishCost"       },
+        { name: "Exterior finish",         totalKey: "exteriorFinishTotal",             materialKey: "materialExteriorFinishCost"       },
+        { name: "Trim and molding",         totalKey: "trimMoldingTotal",             materialKey: "materialTrimMoldingCost"       },
+        { name: "Painting finish",         totalKey: "paintingTotal",              materialKey: "materialPaintingCost"       },
+        { name: "Equipment costs",         totalKey: "total_equipment_cost",          materialKey: "roofMaterial"       },
+        { name: "Contingency costs",         totalKey: "totalOverheadCost",            materialKey: "roofMaterial"       },
+        { name: "Overhead costs",         totalKey: "estimatedContingencyCost",           materialKey: "roofMaterial"       },
+
+        // … and any others you’ve added, e.g. HVAC, Drainage, etc.
+      ];
+
+      // 4) helper to find the row by matching column A
+      function findRowByValue(val) {
+        const range = XLSX.utils.decode_range(ws['!ref']);
+        for(let R = range.s.r; R <= range.e.r; ++R) {
+          const cell = ws[ XLSX.utils.encode_cell({c:0, r:R}) ];
+          if(cell && cell.v === val) return R + 1;  // 1-based row
+        }
+        return null;
+      }
+      
+
+      // 5) fill each element
+      elements.forEach(el => {
+        const row = findRowByValue(el.name);
+        if(!row) {
+          console.warn(`"${el.name}" not found in column A – skipping`);
+          return;
+        }
+        // column B = Line Total, C = Labor, D = Material
+        const total = localStorage.getItem(el.totalKey)    || 0;
+        const labor = localStorage.getItem(el.laborKey)    || 0;
+        const material = localStorage.getItem(el.materialKey) || 0;
+
+        ws[`I${row}`] = { t:'n', v: Number(total) };
+        ws[`G${row}`] = { t:'n', v: Number(labor) };
+        ws[`G${row}`] = { t:'n', v: Number(material) };
+      });
+
+        // 7) Process "row_X" data if needed
+if (savedData) {
+  Object.keys(savedData).forEach(key => {
+    if (key.startsWith('row_')) {
+      const rowIndex = key.split('_')[1];
+      const rowValues = savedData[key];
+      // You can map these dynamically if needed
+    }
+  });
+
+  // Additional handling for specific entries to write to Column D
+  ["Equipment costs", "Contingency costs", "Overhead costs"].forEach(specialName => {
+    const row = findRowByValue(specialName);
+    if (row) {
+      let totalKey = "";
+      if (specialName === "Equipment costs") totalKey = "total_equipment_cost";
+      if (specialName === "Contingency costs") totalKey = "totalOverheadCost";
+      if (specialName === "Overhead costs") totalKey = "estimatedContingencyCost";
+
+      const value = localStorage.getItem(totalKey) || 0;
+      ws[`D${row}`] = { t: 'n', v: Number(value) };
+    }
+  });
+}
+
+      // 6) trigger download
+      XLSX.writeFile(wb, "Client_Cost_Estimate.xlsx");
+    }
+    catch(e) {
+      console.error(e);
+      alert("Error generating Excel: " + e.message);
+    }
+  });
+</script>
+
+</section>
+</div>
+</body>
+</html>

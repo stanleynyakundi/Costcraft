@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs - Construction Estimator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-bold mb-6 text-center">Frequently Asked Questions</h1>
+
+    <div id="faqContainer" class="space-y-4">
+      <!-- FAQ items will be injected here -->
+    </div>
+  </div>
+
+  <script>
+    const faqs = [
+      {
+        question: "What is this software used for?",
+        answer: "Our construction cost estimator helps contractors, architects, and project managers quickly generate detailed material, labor, and total cost estimates for residential and commercial construction projects."
+      },
+      {
+        question: "Do I need any technical skills to use it?",
+        answer: "Not at all! The software is designed with an intuitive interface that allows anyone to input construction data and generate cost estimates — no technical background required."
+      },
+      {
+        question: "Can I download my estimates as Excel or PDF?",
+        answer: "Yes, you can export your cost estimates to Excel (.xlsx) with preformatted sheets. PDF export is also supported for printing or sharing."
+      },
+      {
+        question: "Is my data saved automatically?",
+        answer: "Yes. Your data is automatically saved in your browser’s local storage. You can continue where you left off anytime from the same device."
+      },
+      {
+        question: "How accurate are the estimates?",
+        answer: "The accuracy depends on the quality of input values. Our platform provides real-time calculations and allows you to adjust prices based on local rates and market conditions."
+      },
+      {
+        question: "Can I add custom items or categories?",
+        answer: "Yes. You can dynamically add rows and customize categories like lighting, flooring, finishes, plumbing, and more."
+      },
+      {
+        question: "Does it work on mobile devices?",
+        answer: "Yes, the app is fully responsive and works seamlessly on phones, tablets, and desktops."
+      },
+      {
+        question: "How can I contact support?",
+        answer: "You can reach our support team via the Contact Us page, or email us at support@yourdomain.com."
+      },
+      {
+        question: "Is this software free to use?",
+        answer: "We offer a free version with core features. Premium plans unlock additional tools like advanced reporting, template saving, and team collaboration."
+      },
+      {
+        question: "How often are cost templates updated?",
+        answer: "We update our base templates and material prices quarterly, but you can always override default values based on your current project or supplier rates."
+      }
+    ];
+
+    const container = document.getElementById("faqContainer");
+
+    faqs.forEach(({ question, answer }, index) => {
+      const faq = document.createElement("div");
+      faq.innerHTML = `
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <button 
+            class="w-full text-left px-6 py-4 focus:outline-none focus:ring flex justify-between items-center faq-toggle"
+            data-index="${index}"
+          >
+            <span class="font-medium text-lg">${question}</span>
+            <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="px-6 pb-4 hidden faq-answer">
+            <p class="text-gray-600">${answer}</p>
+          </div>
+        </div>
+      `;
+      container.appendChild(faq);
+    });
+
+    // Toggle functionality
+    document.querySelectorAll(".faq-toggle").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const answer = btn.parentElement.querySelector(".faq-answer");
+        const icon = btn.querySelector("svg");
+
+        answer.classList.toggle("hidden");
+        icon.classList.toggle("rotate-180");
+      });
+    });
+  </script>
+</body>
+</html>

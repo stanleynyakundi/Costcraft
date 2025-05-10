@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .blog-post {
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-post img:hover {
+            transform: scale(1.05);
+        }
+
+        .blog-post-details {
+            padding: 1rem 0;
+        }
+
+        .blog-post-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post-meta {
+            color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .article-content {
+                padding: 1rem;
+            }
+        }
+        .blog-post img {
+    width: 100%;
+    max-width: 300px; /* Adjust this value as desired */
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Blogs on Construction Materials</h1>
+            <p>Get the best insights into the best material as you estimate our construction costs. Choose wisely and save money.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="article-content">
+            <h2>Featured Blogs</h2>
+            <section id="blog-posts">
+                <div class="blog-post">
+                    <a href="/blogs/materials/steel.html">
+                        <img src="assets/images/blog/steel.jpg" alt="Steel Blog">
+                    </a>
+                    <div class="blog-post-details">
+                        <h3 class="blog-post-title">Understanding Construction Reinforcement Steel</h3>
+                        <p class="blog-post-meta">A Comprehensive Analysis of T vs D Twisted Steel</p>
+                    </div>
+                </div>
+                <div class="blog-post">
+                    <a href="/blogs/materials/concrete.html">
+                        <img src="assets/images/blog/concrete.jpg" alt="Concrete Blog">
+                    </a>
+                    <div class="blog-post-details">
+                        <h3 class="blog-post-title">The Importance of Quality Concrete in Construction</h3>
+                        <p class="blog-post-meta">A Comprehensive Analysis of Concrete</p>
+                    </div>
+                </div>
+                <div class="blog-post">
+                    <a href="/blogs/materials/bricks.html">
+                        <img src="assets/images/blog/bricks.jpg" alt="Bricks Blog">
+                    </a>
+                    <div class="blog-post-details">
+                        <h3 class="blog-post-title">Brick Types and Their Uses in Modern Construction</h3>
+                        <p class="blog-post-meta">A Comprehensive Analysis of Bricks in Construction</p>
+                    </div>
+                </div>
+                <div class="blog-post">
+                    <a href="/blogs/materials/roofing.html">
+                        <img src="assets/images/blog/rolled%20roofing.jpg" alt="Roofing Blog">
+                    </a>
+                    <div class="blog-post-details">
+                        <h3 class="blog-post-title">Roofing Solutions</h3>
+                        <p class="blog-post-meta">A Comprehensive Analysis of Roofing Materials</p>
+                    </div>
+                </div>
+                <div class="blog-post">
+                    <a href="/blogs/materials/flooring.html">
+                        <img src="assets/images/blog/tile.jpg" alt="Flooring Blog">
+                    </a>
+                    <div class="blog-post-details">
+                        <h3 class="blog-post-title">Flooring Solutions</h3>
+                        <p class="blog-post-meta">A Comprehensive Analysis of Flooring Materials</p>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <button class="back-to-top" onclick="scrollToTop()"><i class='bx bx-up-arrow-alt'></i></button>
+
+    <footer>
+        <a href="Contact subpages/contact details page.html">Contact Us</a>
+        <a href="/Help center.html">Help</a>
+        <a href="/Company.html">About</a>
+    </footer>
+
+    <script>
+        // Scroll-to-top button visibility
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

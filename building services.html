@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Services Estimator</title>
+    <link rel="stylesheet" href="/assets/css/page style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="calculator-container">
+        <h1>Building Services Estimator</h1>
+    
+    <main>
+      <section class="card">
+        <h2>HVAC Systems</h2>
+        <div class="excel-table">
+          <table id="hvacTable" border="1">
+            <thead>
+              <tr>
+                <th>HVAC Type</th>
+                <th>System Price (Ksh)</th>
+                <th>Installation Price (Ksh)</th>
+                <th>Labor Cost (Ksh)</th>
+                <th>Total HVAC Cost (Ksh)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hvac-row">
+                <td>
+                  <select class="hvac-type">
+                    <option value="heating">Heating</option>
+                    <option value="ventilation">Ventilation</option>
+                    <option value="air-conditioning">Air Conditioning</option>
+                  </select>
+                </td>
+                <td><input type="number" class="system-price" placeholder="0"></td>
+                <td><input type="number" class="installation-price" placeholder="0"></td>
+                <td><input type="number" class="labor-cost" placeholder="0"></td>
+                <td><input class="hvac-total-cost total-cost-input" readonly></td>
+              </tr>
+            </tbody>
+          </table>
+      
+          <div class="button-container">
+            <button onclick="addHVACRow()">Add Row</button>
+            <button onclick="deleteLastHVACRow()">Delete Last Row</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">            
+        <table border="1">
+                <h2>Drainage</h2>
+              
+                <!-- Water Drainage Table -->
+                <div class="excel-table">
+                  <h3>Water Drainage Systems</h3>
+                  <table id="waterDrainageTable" border="1">
+                    <thead>
+                      <tr>
+                        <th>System Type</th>
+                        <th>Drainage Type</th>
+                        <th>System Price (Ksh)</th>
+                        <th>Installation Price (Ksh)</th>
+                        <th>Labor Cost (Ksh)</th>
+                        <th>Total Drainage Cost (Ksh)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="wd-row">
+                        <td>
+                          <select class="wd-system-type" title="Select a drainage system type">
+                            <option value="surface">Surface</option>
+                            <option value="subsurface">Subsurface</option>
+                            <option value="slope">Slope</option>
+                            <option value="downspout">Downspout</option>
+                            <option value="gutters">Gutters</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select class="wd-drainage-type" title="Select drainage type"></select>
+                        </td>
+                        <td><input type="number" class="wd-system-price" placeholder="0" title="Enter system price"></td>
+                        <td><input type="number" class="wd-installation-price" placeholder="0" title="Enter installation price"></td>
+                        <td><input type="number" class="wd-labor-cost" placeholder="0" title="Enter labor cost"></td>
+                        <td><input class="wd-total-cost total-cost-input" readonly></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="button-container">
+                    <button onclick="addWaterDrainageRow()">Add Row</button>
+                    <button onclick="deleteLastWaterDrainageRow()">Delete Last Row</button>
+                  </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">    
+        <table border="1">
+                <h2>Water Distribution Systems</h2>
+                <div class="excel-table">
+                  <table id="waterDistributionTable" border="1">
+                    <thead>
+                      <tr>
+                        <th>Distribution System Type</th>
+                        <th>Pipe Type</th>
+                        <th>Pipe Length (m)</th>
+                        <th>Pipe Cost per meter (Ksh)</th>
+                        <th>Valves Cost (Ksh)</th>
+                        <th>Fixtures Cost (Ksh)</th>
+                        <th>Labor Cost (Ksh)</th>
+                        <th>Total Water Cost (Ksh)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="wd-row">
+                        <td>
+                          <select class="distribution-system-type" title="Select Distribution System Type">
+                            <option value="dead-end">Dead-End</option>
+                            <option value="grid-iron">Grid Iron</option>
+                            <option value="ring">Ring</option>
+                            <option value="radial">Radial</option>
+                          </select>
+                        </td>
+                        <td>
+                          <select class="pipe-type" title="Select Pipe Type">
+                            <option value="copper">Copper</option>
+                            <option value="pvc">PVC</option>
+                            <option value="pex">PEX</option>
+                            <option value="cpvc">CPVC</option>
+                            <option value="galvanized">Galvanized</option>
+                            <option value="abs">ABS Pipes</option>
+                          </select>
+                        </td>
+                        <td><input type="number" class="pipe-length" placeholder="0" title="Enter pipe length"></td>
+                        <td><input type="number" class="pipe-cost" placeholder="0" title="Enter pipe cost"></td>
+                        <td><input type="number" class="valves-cost" placeholder="0" title="Enter valves cost"></td>
+                        <td><input type="number" class="fixtures-cost" placeholder="0" title="Enter fixtures cost"></td>
+                        <td><input type="number" class="labor-cost" placeholder="0" title="Enter labor cost"></td>
+                        <td><input class="row-total-cost total-cost-input" readonly></td>
+                      </tr>
+                    </tbody>
+                  </table>             
+                  </div>
+                </div>
+              </section>
+              
+       
+              <h2>Gas Supply System</h2>
+              <section class="card">
+                  <h2>Gas Supply Estimation</h2>
+                  <div class="excel-table">
+                      <table id="gasSupplyTable">
+                          <thead>
+                              <tr>
+                                  <th>Gas Type</th>
+                                  <th>Unit Price (Ksh)</th>
+                                  <th>Quantity (Cubic Meters)</th>
+                                  <th>Installation Cost (Ksh)</th>
+                                  <th>Total Cost (Ksh)</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr class="gas-row">
+                                  <td>
+                                      <select class="gas-type" title="Select Gas Type">
+                                          <option value="natural-gas">Natural Gas</option>
+                                          <option value="liquefied-petroleum-gas">LPG</option>
+                                          <option value="biogas">Biogas</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="number" class="unit-price" placeholder="0" title="Enter unit price"></td>
+                                  <td><input type="number" class="quantity" placeholder="0" title="Enter quantity"></td>
+                                  <td><input type="number" class="installation-cost" placeholder="0" title="Enter installation cost"></td>
+                                  <td><input type="text" class="gas-total-cost" readonly title="Calculated total cost"></td>
+                              </tr>
+                          </tbody>
+                      </table>
+              
+                      <!-- Buttons below the table -->
+                      <div class="button-container">
+                          <button onclick="addGasRow()">Add Row</button>
+                          <button onclick="deleteLastGasRow()">Delete Last Row</button>
+                      </div>
+              
+                      <div class="total-cost">
+                          <label>Total Gas Supply Cost:</label>
+                          <input type="text" id="totalGasCost" readonly title="Total Gas Supply Cost" class="total-cost-input">
+                      </div>
+                  </div>
+              </section>
+              
+
+              <h2>Electrical Supply System</h2>
+              <section class="card">
+                  <h2>Electrical Power & Wiring Estimation</h2>
+                  <div class="excel-table">
+                      <table id="electricalTable">
+                          <thead>
+                              <tr>
+                                  <th>Power Type</th>
+                                  <th>Unit Price (Ksh)</th>
+                                  <th>Power Capacity (kW)</th>
+                                  <th>Installation Cost (Ksh)</th>
+                                  <th>Wiring Type</th>
+                                  <th>Wire Length (m)</th>
+                                  <th>Wire Cost (Ksh/m)</th>
+                                  <th>Socket Quantity</th>
+                                  <th>Socket Price (Ksh)</th>
+                                  <th>Total Cost (Ksh)</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr class="electrical-row">
+                                  <td>
+                                      <select class="power-type" title="Select Power Type">
+                                          <option value="normal">Normal</option>
+                                          <option value="standby">Standby</option>
+                                          <option value="emergency">Emergency</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="number" class="unit-price" placeholder="0" title="Enter unit price"></td>
+                                  <td><input type="number" class="power-capacity" placeholder="0" title="Enter power capacity"></td>
+                                  <td><input type="number" class="installation-cost" placeholder="0" title="Enter installation cost"></td>
+                                  <td>
+                                      <select class="wire-type" title="Select Wire Type">
+                                          <option value="THHN">THHN</option>
+                                          <option value="THWN">THWN</option>
+                                          <option value="low-voltage">Low Voltage</option>
+                                          <option value="underground-feeder">Underground Feeder</option>
+                                          <option value="armored">Armored Cable</option>
+                                          <option value="coaxial">Coaxial Cable</option>
+                                          <option value="aluminum">Aluminum Building Wire</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="number" class="wire-length" placeholder="0" title="Enter wire length"></td>
+                                  <td><input type="number" class="wire-cost" placeholder="0" title="Enter wire cost per meter"></td>
+                                  <td><input type="number" class="socket-quantity" placeholder="0" title="Enter socket quantity"></td>
+                                  <td><input type="number" class="socket-price" placeholder="0" title="Enter socket price"></td>
+                                  <td><input type="text" class="electrical-total-cost" readonly title="Calculated total cost"></td>
+                              </tr>
+                          </tbody>
+                      </table>
+              
+                      <!-- Buttons below the table -->
+                      <div class="button-container">
+                          <button onclick="addElectricalRow()">Add Row</button>
+                          <button onclick="deleteLastElectricalRow()">Delete Last Row</button>
+                      </div>
+              
+                      <div class="total-cost">
+                          <label>Total Electrical Cost:</label>
+                          <input type="text" id="totalElectricalCost" readonly title="Total Electrical Cost" class="total-cost-input">
+                      </div>
+                  </div>
+              </section>
+              
+              
+              <h2>Lighting Estimation</h2>
+              <section class="card">
+                  <div class="excel-table">
+                      <table id="lightingTable">
+                          <thead>
+                              <tr>
+                                  <th>Lighting Type</th>
+                                  <th>Unit Price (Ksh)</th>
+                                  <th>Quantity</th>
+                                  <th>Installation Cost (Ksh)</th>
+                                  <th>Wiring Type</th>
+                                  <th>Wire Length (m)</th>
+                                  <th>Wire Cost (Ksh/m)</th>
+                                  <th>Switch Quantity</th>
+                                  <th>Switch Price (Ksh)</th>
+                                  <th>Total Cost (Ksh)</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr class="lighting-row">
+                                  <td>
+                                      <select class="lighting-type" title="Select Lighting Type">
+                                          <option value="interior">Interior</option>
+                                          <option value="exterior">Exterior</option>
+                                          <option value="emergency">Emergency Light</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="number" class="unit-price" placeholder="0" title="Enter unit price"></td>
+                                  <td><input type="number" class="quantity" placeholder="0" title="Enter quantity"></td>
+                                  <td><input type="number" class="installation-cost" placeholder="0" title="Enter installation cost"></td>
+                                  <td>
+                                      <select class="wire-type" title="Select Wire Type">
+                                          <option value="THHN">THHN</option>
+                                          <option value="THWN">THWN</option>
+                                          <option value="low-voltage">Low Voltage</option>
+                                          <option value="underground-feeder">Underground Feeder</option>
+                                          <option value="armored">Armored Cable</option>
+                                          <option value="coaxial">Coaxial Cable</option>
+                                          <option value="aluminum">Aluminum Building Wire</option>
+                                      </select>
+                                  </td>
+                                  <td><input type="number" class="wire-length" placeholder="0" title="Enter wire length"></td>
+                                  <td><input type="number" class="wire-cost" placeholder="0" title="Enter wire cost per meter"></td>
+                                  <td><input type="number" class="switch-quantity" placeholder="0" title="Enter switch quantity"></td>
+                                  <td><input type="number" class="switch-price" placeholder="0" title="Enter switch price"></td>
+                                  <td><input type="text" class="lighting-total-cost" readonly title="Calculated total cost"></td>
+                              </tr>
+                          </tbody>
+                      </table>
+              
+                      <!-- Buttons below the table -->
+                      <div class="button-container">
+                          <button onclick="addLightingRow()">Add Row</button>
+                          <button onclick="deleteLastLightingRow()">Delete Last Row</button>
+                      </div>
+              
+                      <div class="total-cost">
+                          <label>Total Lighting Cost:</label>
+                          <input type="text" id="totalLightingCost" readonly title="Total Lighting Cost" class="total-cost-input">
+                      </div>
+                  </div>
+              </section>
+              
+              
+              <section class="card">
+                <h2>Total Building Services Cost</h2>
+                <div class="total-cost">
+                    <label>Total Building Services Cost:</label>
+                    <input type="text" id="TotalBuildingServicesCost" readonly title="Total Building Services Cost" class="total-cost-input">
+                    <button id="calculateTotalCostButton">Calculate Total Cost</button>
+                    <button id="clearServiceTotalButton" type="button">Clear</button>
+                </div>
+              </main>  
+              <footer>
+                  <a href="Contact subpages/contact details page.html">Contact Us</a>
+                  <a href="/Help center.html">Help</a>
+                  <a href="/Company.html">About</a>
+              </footer>
+              <script src="/assets/js/Building services.js"></script>
+          </body>
+          </html>
+          

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company - COSTCRAFT</title>
+    <style>
+       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+:root {
+    --dark-grey: #333333;
+    --medium-grey: #524f4f;
+    --light-grey: #353333;
+    --ash: #141414;
+    --primary-color: #aabee7;
+    --white: rgb(245, 240, 240);
+    --border: 1px solid var(--light-grey);
+    --shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(107, 105, 105, 0.08) 0px 0px 0px 1px;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: var(--white);
+    color: var(--dark-grey);
+    letter-spacing: -0.4px;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    padding: 1.2rem 3rem;
+    border-bottom: var(--border);
+    height: 90px;
+}
+
+header img {
+    height: 40px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-grey);
+}
+
+header .search-button {
+    padding: 0.6rem 1.4rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1.2rem 3rem;
+}
+
+.description, .members, .templates, .contact {
+    margin-bottom: 2rem;
+}
+
+.templates img {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+footer {
+    background-color: var(--white);
+    padding: 1.2rem 3rem;
+    text-align: center;
+    border-top: var(--border);
+}
+
+footer a {
+    margin: 0 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Additional utility classes */
+.btn {
+    display: block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.icon {
+    padding: 0.5rem;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    display: inline-block;
+    height: 40px;
+    vertical-align: middle;
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+    header, .container {
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header .search-button {
+        display: none;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img
+              src="/assets/images/logo.png"
+              width="80"
+              height="100"
+              alt="Logo"
+        <h1>COSTCRAFT</h1>
+        <button class="search-button">Search</button>
+    </header>
+    <div class="container">
+        <div class="description">
+            <div class="description">
+                <h2 style="text-align: center;">"Precision in Every Projection"</h2>
+            </div>
+            <p>CostCraft is a cutting-edge construction cost estimation company that revolutionizes the way builders, contractors, and developers approach project budgeting. Our advanced estimation platform combines decades of industry expertise with innovative technology to deliver precise, comprehensive cost analyses for construction projects of any scale.
+                We understand that accurate cost estimation is the foundation of successful construction projects. At CostCraft, we don't just calculate numbers – we craft financial blueprints that empower our clients to make informed decisions, optimize resources, and maximize project profitability. Our detailed estimation templates cover everything from foundation work to finishing touches, ensuring no cost goes unaccounted for.
+                Our key strengths:
+                
+                Comprehensive cost breakdowns across 14+ construction categories
+                Real-time material price updates and market trend integration
+                Customizable templates for different project types
+                Expert consultation from seasoned construction estimators
+                Time-saving automation tools for quick, accurate estimates
+                
+                Whether you're planning a residential development, commercial complex, or industrial facility, CostCraft provides the precision tools and expertise you need to build with confidence..</p>
+        </div>
+            <div style="text-align: center;">
+                <img src="assets/images/about/estimation image 1.jpg" alt="Template Image">
+            </div>
+        <div class="templates">
+            <h2 style="text-align: center;">Estimation Templates</h2>
+            <div>
+                <div style="text-align: center;">
+                    <img src="assets/images/about/residential temp.jpg" alt="Template Image">
+                    <p>Template 1: Detailed cost breakdown for residential construction.</p>
+                </div>
+            <div>
+                <div style="text-align: center;">
+                <img src="assets/images/about/commercial temp.jpg" alt="Template 2">
+                <p>Template 2: Comprehensive cost estimation for commercial projects.</p>
+            </div>
+            <!-- Add more templates as needed -->
+        </div>
+        <div class="contact">
+            <h2>Contact Information</h2>
+            <p>For inquiries, please contact us at:</p>
+            <p>Email: costcraft01@gmail.com</p>
+            <p>Phone: +254790465548</p>
+        </div>
+    </div>
+    <footer>
+        <a href="https://facebook.com/costcraft" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://twitter.com/costcraft" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://linkedin.com/company/costcraft" target="_blank" rel="noopener">LinkedIn</a>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Construction Cost Calculator</title>
+    <link rel="stylesheet" href="/assets/css/page style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="calculator-container">
+        <h1>Advanced Construction Cost Calculator</h1>
+
+        <div class="card">
+            <h2>Beams</h2>
+            <div class="excel-table">
+                <table id="beamTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Height (mm)</th>
+                            <th>Width (mm)</th>
+                            <th>Surface Area (sq m)</th>
+                            <th>Span (mm)</th>
+                            <th>Number</th>
+                            <th>Volume of Concrete (cubic m)</th>
+                            <th>Unit Cost of Concrete (per cubic meter)</th>
+                            <th>Quantity of Steel (kg)</th>
+                            <th>Unit Cost of Steel (Ksh)</th>
+                            <th>Steel Fabrication Cost (Ksh)</th>
+                            <th>Steel Labor Cost (Ksh)</th>
+                            <th>Steel Overheads Cost (Ksh)</th>
+                            <th>Binding Wire Cost (Ksh)</th>
+                            <th>Area of Formwork (sq m)</th>
+                            <th>Unit Cost of Formwork (Ksh)</th>
+                            <th>Plastering Cost (Ksh)</th>
+                            <th>Beam Labor Cost (Ksh)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row">
+                            <td><input type="text" class="beam-name" placeholder="Beam Name"></td>
+                            <td><input type="number" class="height" placeholder="Height (mm)"></td>
+                            <td><input type="number" class="width" placeholder="Width (mm)"></td>
+                            <td><input type="number" class="area" placeholder="Surface Area (m²)" readonly></td>
+                            <td><input type="number" class="span" placeholder="Span (mm)"></td>
+                            <td><input type="number" class="number" placeholder="Number"></td>
+                            <td><input type="number" class="volume" placeholder="Volume (m³)" readonly></td>
+                            <td><input type="number" class="concrete-unit-cost" placeholder="Concrete Unit Cost"></td>
+                            <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)"></td>
+                            <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost"></td>
+                            <td><input type="number" class="steel-fabrication-cost" placeholder="Steel Fabrication Cost"></td>
+                            <td><input type="number" class="steel-labor-cost" placeholder="Steel Labor Cost"></td>
+                            <td><input type="number" class="steel-overheads-cost" placeholder="Steel Overheads Cost"></td>
+                            <td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost"></td>
+                            <td><input type="number" class="formwork-area" placeholder="Formwork Area (m²)" readonly></td>
+                            <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost"></td>
+                            <td><input type="number" class="plastering-cost" placeholder="Plastering Cost (Ksh)" readonly></td>
+                            <td><input type="number" class="beam-labor-cost" placeholder="Beam Labor Cost"></td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <!-- Buttons below the table -->
+                <button id="addRowButton">Add Row</button>
+                <button id="deleteRowButton">Delete Last Row</button>
+                <button id="clearAllButton">Clear All</button>
+        
+                <div class="total-cost">
+                    <label>Total Beam Cost:</label>
+                    <input type="text" id="totalBeamCost" title="Total Beam Cost" placeholder="Total Beam Cost" disabled>
+                </div>
+            </div>
+        </div>
+               
+        
+<!-- Columns Section -->
+<div class="card">
+    <h2>Columns</h2>
+    <div class="excel-table">
+        <table id="columnTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Width (mm)</th>
+                    <th>Depth (mm)</th>
+                    <th>Area (sq mm)</th>
+                    <th>Height (mm)</th>
+                    <th>Number</th>
+                    <th>Volume of Concrete (cu mm)</th>
+                    <th>Unit Cost of Concrete (Ksh)</th>
+                    <th>Quantity of Steel (kg)</th>
+                    <th>Steel Fabrication Cost (Ksh)</th>
+                    <th>Steel Labor Cost (Ksh)</th>
+                    <th>Steel Overheads Cost (Ksh)</th>
+                    <th>Unit Cost of Steel (Ksh)</th>
+                    <th>Binding Wire Cost (Ksh)</th>
+                    <th>Area of Formwork (sq mm)</th>
+                    <th>Unit Cost of Formwork (Ksh)</th>
+                    <th>Plastering Cost (Ksh)</th>
+                    <th> Labor Cost (Ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row">
+                    <td><input type="text" class="column-name" placeholder="Column Name"></td>
+                    <td><input type="number" class="width" placeholder="Width (mm)"></td>
+                    <td><input type="number" class="depth" placeholder="Depth (mm)"></td>
+                    <td><input type="number" class="area" placeholder="Area (sq mm)" readonly></td>
+                    <td><input type="number" class="height" placeholder="Height (mm)"></td>
+                    <td><input type="number" class="number" placeholder="Number"></td>
+                    <td><input type="number" class="volume" placeholder="Volume (cu mm)" readonly></td>
+                    <td><input type="number" class="concrete-unit-cost" placeholder="Concrete Unit Cost (Ksh)"></td>
+                    <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)"></td>
+                    <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost (Ksh)"></td>
+                    <td><input type="number" class="steel-fabrication-cost" placeholder="Steel Fabrication Cost (Ksh)"></td>
+                    <td><input type="number" class="steel-labor-cost" placeholder="Steel Labor Cost (Ksh)"></td>
+                    <td><input type="number" class="steel-overheads-cost" placeholder="Steel Overheads Cost (Ksh)"></td>
+                    <td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost (Ksh)"></td>
+                    <td><input type="number" class="formwork-area" placeholder="Formwork Area (sq mm)"></td>
+                    <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
+                    <td><input type="number" class="plastering-cost" placeholder="Plastering Cost (Ksh)" readonly></td>
+                    <td><input type="number" class="beam-labor-cost" placeholder="Column Labor Cost (Ksh)"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Buttons below the table -->
+        <div class="button-group">
+            <button id="addColumnRowButton">Add Row</button>
+            <button id="deleteColumnRowButton">Delete Last Row</button>
+            <button id="clearColumnTableButton">Clear All</button>
+        </div>
+
+        <div class="total-cost">
+            <label>Total Column Cost:</label>
+            <input type="text" id="totalColumnCost" title="Total Column Cost" placeholder="Total Column Cost" disabled>
+        </div>
+    </div>
+</div>
+        
+        
+        <!-- Walls Section -->
+        <div class="card">
+            <h2>Walls</h2>
+            <div class="excel-table">
+                <table id="wallTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cost per Brick ($)</th>
+                            <th>Wall Dimensions (Length x Height) (m)</th>
+                            <th>Brick Dimensions (Length x Height) (mm)</th>
+                            <th>Total Bricks</th>
+                            <th>Brick Cost ($)</th>
+                            <th>Plastering Mortar Volume (cubic meters)</th>
+                            <th>Joint Mortar Volume (cubic meters)</th>
+                            <th>Mortar Volume (cubic meters)</th>
+                            <th>Mortar Cost per cubic meter (Ksh)</th>
+                            <th>Total Mortar Cost (Ksh)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="wall-row">
+                            <td><input type="text" class="wall-name" placeholder="Wall no."></td>
+                            <td><input type="number" class="cost-per-brick" placeholder="Cost per Brick"></td>
+        
+                            <!-- Wall Dimensions -->
+                            <td>
+                                <input type="number" class="wall-length" placeholder="Length (m)" step="0.01"><br>
+                                <input type="number" class="wall-height" placeholder="Height (m)" step="0.01">
+                            </td>
+        
+                            <!-- Brick Dimensions -->
+                            <td>
+                                <input type="number" class="brick-length" placeholder="Brick Length (mm)" step="1"><br>
+                                <input type="number" class="brick-height" placeholder="Brick Height (mm)" step="1">
+                            </td>
+        
+                            <td><input type="number" class="total-bricks" placeholder="Total Bricks" readonly></td>
+                            <td><input type="number" class="brick-cost" placeholder="Brick Cost" readonly></td>
+                            <td><input type="number" class="plastering-mortar-volume" placeholder="Plastering Mortar Volume"></td>
+                            <td><input type="number" class="joint-mortar-volume" placeholder="Joint Mortar Volume"></td>
+                            <td><input type="number" class="mortar-volume" placeholder="Mortar Volume" readonly></td>
+                            <td><input type="number" class="mortar-cost-per-cubic-meter" placeholder="Mortar Cost per cubic meter"></td>
+                            <td><input type="number" class="total-mortar-cost" placeholder="Total Mortar Cost" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <button id="addWallRowButton">Add Row</button>
+                <button id="deleteWallRowButton">Delete Last Row</button>
+        
+                <div class="total-cost">
+                    <label>Total Walling Cost:</label>
+                    <input type="text" id="totalWallingCost" title="Total Walling Cost" placeholder="Total Walling Cost" disabled>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Doors and Windows -->
+        <div class="card">
+            <h2>Doors and Windows</h2>
+            <div class="excel-table">
+                <table id="doorWindowTable">
+                    <thead>
+                        <tr>
+                            <th>Number of Windows</th>
+                            <th>Type of Window</th>
+                            <th>Cost of Window Type ($)</th>
+                            <th>Total Cost of Windows ($)</th>
+                            <th>Number of Doors</th>
+                            <th>Type of Door</th>
+                            <th>Cost of Door Type ($)</th>
+                            <th>Total Cost of Doors ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="door-window-row">
+                            <td><input type="number" class="num-windows" placeholder="Number of Windows"></td>
+                            <td><input type="text" class="window-type" placeholder="Type of Window"></td>
+                            <td><input type="number" class="cost-window-type" placeholder="Cost of Window Type"></td>
+                            <td><input type="number" class="total-cost-windows" placeholder="Total Cost of Windows" readonly></td>
+                            <td><input type="number" class="num-doors" placeholder="Number of Doors"></td>
+                            <td><input type="text" class="door-type" placeholder="Type of Door"></td>
+                            <td><input type="number" class="cost-door-type" placeholder="Cost of Door Type"></td>
+                            <td><input type="number" class="total-cost-doors" placeholder="Total Cost of Doors" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <!-- Buttons for adding and deleting rows -->
+                <button id="addDoorWindowRowButton">Add Row</button>
+                <button id="deleteDoorWindowRowButton">Delete Last Row</button>
+        
+                <div class="total-cost">
+                    <label>Total Door and Window Cost:</label>
+                    <input type="text" id="totalDoorWindowCost" title="Total Door Window Cost" readonly>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Foundations Section -->
+        <div class="card">
+            <h2>Foundations</h2>
+            <div class="excel-table foundation">
+                <table id="foundationTable">
+                    <thead>
+                        <tr>
+                            <th>Foundation Type</th>
+                            <th>Footing Thickness (mm)</th>
+                            <th>Volume (m³)</th>
+                            <th>Concrete Cost (Ksh)</th>
+                            <th>Diameter of Footing Bars (mm)</th>
+                            <th>Bottom Bars Length (m)</th>
+                            <th>Top Bars Length (m)</th>
+                            <th>Total Bars Length (m)</th>
+                            <th>Reinforcement Weight (kg)</th>
+                            <th>Total Bar Cost</th>
+                            <th>Length of Foundation Wall (mm)</th>
+                            <th>Width (mm)</th>
+                            <th>Height (mm)</th>
+                            <th>Cost of Bricks per Piece (Ksh)</th>
+                            <th>Total Bricks</th>
+                            <th>Brick Cost (Ksh)</th>
+                            <th>Mortar Volume (m³)</th>
+                            <th>Mortar Cost (Ksh)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="foundation-row">
+                            <td>
+                                <select class="foundation-type" title="Select Foundation Type">
+                                    <option value="pad">Pad Foundation</option>
+                                    <option value="strip">Strip Foundation</option>
+                                </select>
+                            </td>
+                            <td><input type="number" class="footing-thickness" placeholder="Enter thickness"></td>
+                            <td><input type="number" class="volume" placeholder="Enter volume"></td>
+                            <td><input type="number" class="concrete-cost" placeholder="Enter cost"></td>
+                            <td><input type="number" class="footing-bars-diameter" placeholder="Enter diameter"></td>
+                            <td><input type="number" class="bottom-bars-length" placeholder="Enter bottom bars length"></td>
+                            <td><input type="number" class="top-bars-length" placeholder="Enter top bars length"></td>
+                            <td><input type="number" class="total-bars-length" placeholder="Enter total bars length"></td>
+                            <td><input type="number" class="reinforcement-weight" placeholder="Enter weight"></td>
+                            <td><input type="number" class="total-bar-cost" placeholder="Enter total bar cost"></td>
+                            <td><input type="number" class="wall-length" placeholder="Enter wall length"></td>
+                            <td><input type="number" class="width" placeholder="Enter width"></td>
+                            <td><input type="number" class="height" placeholder="Enter height"></td>
+                            <td><input type="number" class="brick-cost-per-piece" placeholder="Enter cost per brick"></td>
+                            <td><input type="number" class="total-bricks" placeholder="Enter total bricks"></td>
+                            <td><input type="number" class="brick-cost" placeholder="Enter brick cost"></td>
+                            <td><input type="number" class="mortar-volume" placeholder="Enter mortar volume"></td>
+                            <td><input type="number" class="mortar-cost" placeholder="Enter mortar cost"></td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <!-- Buttons for adding and deleting rows -->
+                <button id="addFoundationRowButton">Add Row</button>
+                <button id="deleteFoundationRowButton">Delete Last Row</button>
+                <button id="clearFoundationTableButton">Clear All</button>
+
+        
+                <div class="total-cost">
+                    <label>Total Foundation Cost:</label>
+                    <input type="number" id="totalFoundationCost" readonly title="Total Cost">
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Excavation</h2>
+        
+            <h2>Excavation Cost Calculator</h2>
+    
+            <table id="excavationTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Length (mm)</th>
+                        <th>Width (mm)</th>
+                        <th>Depth (mm)</th>
+                        <th>Total Excavation Volume (m³)</th>
+                        <th>Excavation Cost per m³ (Ksh)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="excavation-row">
+                        <td>
+                            <select title="Excavation Type" name="excavationType">
+                                <option value="Strip">Strip</option>
+                                <option value="Pad">Pad</option>
+                            </select>
+                        </td>
+                        <td><input type="number" placeholder="Enter length"></td>
+                        <td><input type="number" placeholder="Enter width"></td>
+                        <td><input type="number" placeholder="Enter depth"></td>
+                        <td><input type="text" placeholder="Volume" readonly></td>
+                        <td><input type="number" placeholder="Enter cost per m³"></td>
+                        <td><button onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <button onclick="addRow()">Add Row</button>
+            <div class="total-cost">
+                <label>Total Excavation Cost:</label>
+                <input type="number" id="totalExcavationCost" readonly title="Total Cost">
+            </div>
+        </div>
+    </div>
+
+        <!-- Roof Section -->
+        <div class="card">
+            <h2>Roof Material Cost Calculator</h2>
+            <table border="1" style="width: 100%; text-align: left; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>House Length (mm)</th>
+                        <th>House Width (mm)</th>
+                        <th>Crosstie Length (mm)</th>
+                        <th>Kingpost Height (mm)</th>
+                        <th>Truss Material Cost per Meter (ksh)</th>
+                        <th>Total Truss Material Length (m)</th>
+                        <th>Total Truss Material Cost (ksh)</th>
+                        <th>Purlin Spacing (mm)</th>
+                        <th>Purlin Material Cost per Meter (ksh)</th>
+                        <th>Purlin Cost (ksh)</th>
+                        <th>Roofing Area Right (m²)</th>
+                        <th>Roofing Area Left (m²)</th>
+                        <th>Roofing Material Cost per Piece (ksh)</th>
+                        <th>Total Number of Material</th>
+                        <th>Roofing Material Cost (ksh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" id="houseLength" placeholder="Enter length"></td>
+                        <td><input type="number" id="houseWidth" placeholder="Enter width"></td>
+                        <td><input type="number" id="crosstieLength" placeholder="Enter length"></td>
+                        <td><input type="number" id="kingpostHeight" placeholder="Enter height"></td>
+                        <td><input type="number" id="trussCostPerMeter" placeholder="Enter cost"></td>
+                        <td><input type="number" id="totalTrussLength" placeholder="Enter length"></td>
+                        <td><input type="number" id="totalTrussCost" placeholder="Enter cost" readonly></td>
+                        <td><input type="number" id="purlinSpacing" placeholder="Enter spacing"></td>
+                        <td><input type="number" id="purlinCostPerMeter" placeholder="Enter cost"></td>
+                        <td><input type="number" id="purlinCost" placeholder="Enter cost" readonly></td>
+                        <td><input type="number" id="roofingAreaRight" placeholder="Enter area"></td>
+                        <td><input type="number" id="roofingAreaLeft" placeholder="Enter area"></td>
+                        <td><input type="number" id="roofingCostPerPiece" placeholder="Enter cost"></td>
+                        <td><input type="number" id="totalMaterial" placeholder="Enter count"></td>
+                        <td><input type="number" id="roofingMaterialCost" placeholder="Enter cost" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card">
+            <h2>Roof Details</h2>
+            <table border="1" style="width: 50%; text-align: left; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Roof Shape</th>
+                        <th>Roof Material</th>
+                        <th>Roof Area (sq ft)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select id="roofShape" title="Select Roof Shape">
+                                <option value="pyramid">Pyramid Roof</option>
+                                <option value="openGable">Open Gable</option>
+                                <option value="closedGable">Closed Gable</option>
+                                <option value="hip">Hip Roof</option>
+                                <option value="butterfly">Butterfly Roof</option>
+                                <option value="gambrel">Gambrel Roof</option>
+                                <option value="hipValley">Hip and Valley Roof</option>
+                                <option value="crossHipped">Cross Hipped Roof</option>
+                                <option value="shed">Shed Roof</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="roofMaterial" title="Select Roof Material">
+                                <option value="asphaltShingles">Asphalt Shingles</option>
+                                <option value="solarTiles">Solar Tiles</option>
+                                <option value="metal">Metal Roofing</option>
+                                <option value="clayTiles">Clay Tiles</option>
+                                <option value="concreteTiles">Concrete Tiles</option>
+                                <option value="rolledRoofing">Rolled Roofing</option>
+                            </select>
+                        </td>
+                        <td><input type="number" id="roofArea" placeholder="Enter area" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="total-cost">
+                <label>Total Roofing Cost:</label>
+                <input type="text" id="totalRoofingCost"readonly title="Total Roofing Cost">
+            </div>
+        </div>
+
+<!-- Floors Section -->
+
+
+<div class="card">
+    <h2>Flooring</h2>
+    <div class="excel-table">
+        <table id="flooringTable">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Hardcore Volume (m³)</th>
+                    <th>Hardcore Cost (Ksh)</th>
+                    <th>Marram Volume (m³)</th>
+                    <th>Marram Cost (Ksh)</th>
+                    <th>DPC Amount (Rolls)</th>
+                    <th>DPC Cost (Ksh)</th>
+                    <th>BRC Mesh Amount (Rolls)</th>
+                    <th>BRC Mesh Cost (Ksh)</th>
+                    <th>Concrete Volume (m³)</th>
+                    <th>Concrete Cost (Ksh)</th>
+                    <th>Screed Mortar Volume (m³)</th>
+                    <th>Mortar Cost (Ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="flooring-row">
+                    <td><input type="number" placeholder="Number"></td>
+                    <td><input type="number" placeholder="Hardcore Volume"></td>
+                    <td><input type="number" placeholder="Hardcore Cost"></td>
+                    <td><input type="number" placeholder="Marram Volume"></td>
+                    <td><input type="number" placeholder="Marram Cost"></td>
+                    <td><input type="number" placeholder="DPC Amount"></td>
+                    <td><input type="number" placeholder="DPC Cost"></td>
+                    <td><input type="number" placeholder="BRC Mesh Amount"></td>
+                    <td><input type="number" placeholder="BRC Mesh Cost"></td>
+                    <td><input type="number" placeholder="Concrete Volume"></td>
+                    <td><input type="number" placeholder="Concrete Cost"></td>
+                    <td><input type="number" placeholder="Screed Mortar Volume"></td>
+                    <td><input type="number" placeholder="Mortar Cost"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Buttons below the table -->
+        <button onclick="addFlooringRow()">Add Row</button>
+        <button onclick="deleteLastFlooringRow()">Delete Last Row</button>
+
+        <div class="total-cost">
+            <label>Total Flooring Cost:</label>
+            <input type="text" id="totalFlooringCost" title="Total Flooring Cost" placeholder="Total Flooring Cost" readonly>
+        </div>
+    </div>
+</div>
+
+<!-- Ceilings Section -->
+<div class="card">
+    <h2>Ceiling</h2>
+    <div class="excel-table">
+        <table id="ceilingTable">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Room Length (mm)</th>
+                    <th>Room Width (mm)</th>
+                    <th>Main Runners</th>
+                    <th>Runner Cost (Ksh)</th>
+                    <th>Cross Tees</th>
+                    <th>Cross Tee Cost (Ksh)</th>
+                    <th>Wall Angles</th>
+                    <th>Angle Cost (Ksh)</th>
+                    <th>Hanger Wires</th>
+                    <th>Hanger Wire Cost (Ksh)</th>
+                    <th>Total Suspension System Cost (Ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ceiling-row">
+                    <td><input type="text" placeholder="Room"></td>
+                    <td><input type="number" placeholder="Room Length"></td>
+                    <td><input type="number" placeholder="Room Width"></td>
+                    <td><input type="number" placeholder="Main Runners"></td>
+                    <td><input type="number" placeholder="Runner Cost"></td>
+                    <td><input type="number" placeholder="Cross Tees"></td>
+                    <td><input type="number" placeholder="Cross Tee Cost"></td>
+                    <td><input type="number" placeholder="Wall Angles"></td>
+                    <td><input type="number" placeholder="Angle Cost"></td>
+                    <td><input type="number" placeholder="Hanger Wires"></td>
+                    <td><input type="number" placeholder="Hanger Wire Cost"></td>
+                    <td><input type="number" placeholder="Total Suspension System Cost"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Buttons below the table -->
+        <button onclick="addCeilingRow()">Add Row</button>
+        <button onclick="deleteLastCeilingRow()">Delete Last Row</button>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Ceiling Material</h2>
+    <div class="excel-table">
+        <table id="ceilingMaterialTable">
+            <thead>
+                <tr>
+                    <th>Ceiling Material</th>
+                    <th>Ceiling Units</th>
+                    <th>Unit Cost (Ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ceiling-material-row">
+                    <td>
+                        <select title="Select Ceiling Material">
+                            <option value="gypsum">Gypsum Ceilings</option>
+                            <option value="plaster">Plaster Ceiling</option>
+                            <option value="fiber">Fiber Ceiling</option>
+                            <option value="wooden">Wooden Ceiling</option>
+                            <option value="glass">Glass Ceiling</option>
+                            <option value="metal">Metal Ceiling</option>
+                            <option value="synthetic">Synthetic Leather or Cloth Ceiling</option>
+                        </select>
+                    </td>
+                    <td><input type="number" placeholder="Ceiling Units"></td>
+                    <td><input type="number" placeholder="Unit Cost"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="total-cost">
+            <label>Total Ceiling Cost:</label>
+            <input type="text" id="totalCeilingCost" readonly title="Total Ceiling Cost">
+        </div>
+    </div>
+</div>
+
+                
+                
+<div class="card">
+    <h2>Equipment Costs</h2>
+    <div class="excel-table">
+        <table id="equipmentTable">
+            <thead>
+                <tr>
+                    <th>Equipment</th>
+                    <th>Hourly Rate (ksh)</th>
+                    <th>Number of Operation Hours</th>
+                    <th>Total Cost (ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="equipment-row">
+                    <td><input type="text" placeholder="Equipment"></td>
+                    <td><input type="number" placeholder="Hourly Rate"></td>
+                    <td><input type="number" placeholder="Operation Hours"></td>
+                    <td><input type="number" placeholder="Total Cost" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Buttons below the table -->
+        <button onclick="addEquipmentRow()">Add Row</button>
+        <button onclick="deleteLastEquipmentRow()">Delete Last Row</button>
+
+        <div class="total-cost">
+            <label>Total Equipment Cost:</label>
+            <input type="text" id="totalEquipmentCost" readonly title="Total Equipment Cost" placeholder="Total Cost">
+        </div>
+    </div>
+</div>
+
+    <div class="card">
+    <h2>Contingency Cost Estimation</h2>
+    <div class="excel-table">
+        <table>
+        <tr>
+            <th>Optimistic Cost (ksh)</th>
+            <th>Most Likely Cost (ksh)</th>
+            <th>Pessimistic Cost (ksh)</th>
+            <th>Estimated Contingency Cost ($)</th>
+        </tr>
+            <tr>
+            <td><input type="number" id="optimisticCost" placeholder="Optimistic Cost"></td>
+            <td><input type="number" id="mostLikelyCost" placeholder="Most Likely Cost"></td>
+            <td><input type="number" id="pessimisticCost" placeholder="Pessimistic Cost"></td>
+            <td><input type="number" id="estimatedContingencyCost" placeholder="Estimated Cost" readonly></td>
+         </tr>
+         </table>
+    </div>
+</div>
+</div>
+<div class="card">
+    <h2>Overhead Cost Estimation</h2>
+    <div class="excel-table">
+        <table id="overheadTable">
+            <thead>
+                <tr>
+                    <th>Overhead Cost Item</th>
+                    <th>Cost (ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="overhead-row">
+                    <td><input type="text" placeholder="Overhead Cost Item"></td>
+                    <td><input type="number" class="overhead-cost" placeholder="Cost"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Buttons below the table -->
+        <button onclick="addOverheadRow()">Add Row</button>
+        <button onclick="deleteLastOverheadRow()">Delete Last Row</button>
+
+        <div class="total-cost">
+            <label>Total Overhead Costs:</label>
+            <input type="number" id="totalOverheadCost" readonly title="Total Overhead Costs">
+        </div>
+    </div>
+</div>
+
+        <div class="card">
+            <h2>Total Project Cost Estimation</h2>
+            <div class="excel-table">
+                <table>
+                     <tr>
+                        <th>Total Construction Costs</th>
+                        <td><input type="number" id="totalConstructionCost" readonly title="Total Construction Cost" placeholder="Total Construction Cost"></td>
+                    </tr>
+                    <tr>
+                        <th>Total Finishing Costs</th>
+                        <td><input type="number" id="totalFinishingCost" readonly title="Total Finishing Cost" placeholder="Total Finishing Cost"></td>
+                    </tr>
+                    <tr>
+                        <th>Total Building Services Costs</th>
+                        <td><input type="number" id="totalBuildingServicesCost" readonly title="Total Building Services Cost" placeholder="Total Building Services Cost"></td>
+                    </tr>
+                    </table>
+                    <div class="total-cost">
+                        <label>Total Project Cost:</label>
+                        <input type="number" id="totalProjectCost" readonly title="Total Project Cost" placeholder="Total Project Cost">
+                    </div>
+            </div>
+            <div class="button-cost-container">
+                <button class="btn" id="calculateBtn">Calculate Total Cost</button>
+            </div>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</main>
+
+<footer>
+    <a href="Contact subpages/contact details page.html">Contact Us</a>
+    <a href="/Help center.html">Help</a>
+    <a href="/Company.html">About</a>
+</footer>
+<main>
+    <script src="/assets/js/construction cost.js"></script>
+    </body>
+  </html>
+

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Labor Cost Estimator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+    input[type="number"], input[type="text"] {
+      width: 100px;
+    }
+    input[readonly] {
+      background-color: #f9f9f9;
+    }
+    #totalCost {
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #34495e;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Labor Cost Estimation</h1>
+
+  <!-- General Labor Table -->
+  <h2>General Labor</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Labor Type</th>
+        <th>Number of Workers</th>
+        <th>Daily Rate (KES)</th>
+        <th>Number of Days</th>
+        <th>Subtotal (KES)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Unskilled Labor</td>
+        <td><input type="number" id="unskilledNum"></td>
+        <td><input type="number" id="unskilledRate"></td>
+        <td><input type="number" id="unskilledDays"></td>
+        <td><input type="text" id="unskilledSubtotal" readonly></td>
+      </tr>
+      <tr>
+        <td>Semi-Skilled Labor</td>
+        <td><input type="number" id="semiSkilledNum"></td>
+        <td><input type="number" id="semiSkilledRate"></td>
+        <td><input type="number" id="semiSkilledDays"></td>
+        <td><input type="text" id="semiSkilledSubtotal" readonly></td>
+      </tr>
+      <tr>
+        <td>Skilled Labor</td>
+        <td><input type="number" id="skilledNum"></td>
+        <td><input type="number" id="skilledRate"></td>
+        <td><input type="number" id="skilledDays"></td>
+        <td><input type="text" id="skilledSubtotal" readonly></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Professional Services Table -->
+  <h2>Professional Services</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Professional Type</th>
+        <th>Hourly Rate (KES)</th>
+        <th>Number of Hours</th>
+        <th>Subtotal (KES)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Site Engineer</td>
+        <td><input type="number" id="engineerRate"></td>
+        <td><input type="number" id="engineerHours"></td>
+        <td><input type="text" id="engineerSubtotal" readonly></td>
+      </tr>
+      <tr>
+        <td>Quantity Surveyor</td>
+        <td><input type="number" id="qsRate"></td>
+        <td><input type="number" id="qsHours"></td>
+        <td><input type="text" id="qsSubtotal" readonly></td>
+      </tr>
+      <tr>
+        <td>Project Manager</td>
+        <td><input type="number" id="pmRate"></td>
+        <td><input type="number" id="pmHours"></td>
+        <td><input type="text" id="pmSubtotal" readonly></td>
+      </tr>
+      <tr>
+        <td>Architect</td>
+        <td><input type="number" id="architectRate"></td>
+        <td><input type="number" id="architectHours"></td>
+        <td><input type="text" id="architectSubtotal" readonly></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Contingency -->
+  <h2>Contingency</h2>
+  <label for="contingency">Contingency Percentage (%): </label>
+  <input type="number" id="contingency" value="5" min="0" max="100" />
+  <br><br>
+
+  <!-- Total Cost Display -->
+  <h2>Total Labor & Professional Cost</h2>
+  <p id="totalCost">KES 0.00</p>
+
+  <!-- Buttons -->
+  <button onclick="calculateTotalLaborCost()">Calculate Total</button>
+  <button onclick="saveInputs()">Save Inputs</button>
+  <button onclick="loadInputs()">Load Inputs</button>
+  <button onclick="downloadPDF()">Download as PDF</button>
+
+  <!-- JavaScript Logic -->
+  <script>
+    function calculateTotalLaborCost() {
+      let total = 0;
+
+      const laborTypes = ['unskilled', 'semiSkilled', 'skilled'];
+      laborTypes.forEach(type => {
+        const num = parseFloat(document.getElementById(`${type}Num`).value) || 0;
+        const rate = parseFloat(document.getElementById(`${type}Rate`).value) || 0;
+        const days = parseFloat(document.getElementById(`${type}Days`).value) || 0;
+        const subtotal = num * rate * days;
+        document.getElementById(`${type}Subtotal`).value = subtotal.toFixed(2);
+        total += subtotal;
+      });
+
+      const pros = ['engineer', 'qs', 'pm', 'architect'];
+      pros.forEach(pro => {
+        const rate = parseFloat(document.getElementById(`${pro}Rate`).value) || 0;
+        const hours = parseFloat(document.getElementById(`${pro}Hours`).value) || 0;
+        const subtotal = rate * hours;
+        document.getElementById(`${pro}Subtotal`).value = subtotal.toFixed(2);
+        total += subtotal;
+      });
+
+      const contingency = parseFloat(document.getElementById('contingency').value) || 0;
+      const totalWithContingency = total + (total * contingency / 100);
+
+      document.getElementById('totalCost').innerText = `KES ${totalWithContingency.toFixed(2)} (incl. ${contingency}% contingency)`;
+    }
+
+    function saveInputs() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        localStorage.setItem(input.id, input.value);
+      });
+      alert("Inputs saved to local storage.");
+    }
+
+    function loadInputs() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        if (localStorage.getItem(input.id)) {
+          input.value = localStorage.getItem(input.id);
+        }
+      });
+      calculateTotalLaborCost();
+      alert("Inputs loaded from local storage.");
+    }
+    function downloadPDF() {
+  const element = document.body.cloneNode(true); // Clone the body to avoid input overwrite
+  const inputs = element.querySelectorAll('input');
+  inputs.forEach(input => {
+    const span = document.createElement('span');
+    span.textContent = input.value;
+    input.parentNode.replaceChild(span, input);
+  });
+
+  const options = {
+    margin: 0.5,
+    filename: 'Costcraft Labor_Cost_Estimate.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+
+  html2pdf().from(element).set(options).save();
+}
+
+  </script>
+
+</body>
+</html>

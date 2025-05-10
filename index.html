@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Costcraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+  </head>
+  <body id="content">
+    <header id="header" class="header d-flex align-items-center">
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="container">
+        <div class="nav-start">
+         <div class="logo-container"></div>
+          <a class="logo" href="/"> 
+            <img
+              src="/assets/images/logo.png"
+              width="80"
+              height="80"
+              alt="Logo"
+              <div class="center-text">
+              <span class="logo-text">COSTCRAFT</span>
+          </a>
+          <nav class="menu">
+            <ul class="menu-bar"
+              <li>
+                <button
+                  class="nav-link dropdown-btn"
+                  data-dropdown="dropdown1"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-label="Estimate"
+                >
+                  Estimate
+                  <i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown1" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="/Construction cost.html">
+                        <div>
+                          <span class="dropdown-link-title">Construction Cost</span>
+                          <p>Calculate structural and civil works costs</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="/Finishing cost.html">
+                        <div>
+                          <span class="dropdown-link-title">Finishing Cost</span>
+                          <p>Estimate interior and exterior finishing costs</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="/building services.html">
+                        <div>
+                          <span class="dropdown-link-title">Building Services</span>
+                          <p>Calculate MEP and utility costs</p>
+                        </div>
+                      </a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="/labor.html">
+                        <div>
+                          <span class="dropdown-link-title">Labor estimation</span>
+                          <p>Calculate labor costs</p>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <button
+                class="nav-link dropdown-btn"
+                data-dropdown="dropdown2"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="resources"
+            >
+                Resources
+                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div id="dropdown2" class="dropdown">
+                <ul role="menu">
+                    <li role="menuitem">
+                        <a class="dropdown-link" href="/blogs.html">
+                            <div>
+                                <span class="dropdown-link-title">Blogs</span>
+                                <p>Latest insights and articles</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a class="dropdown-link" href="/Case studies.html">
+                            <div>
+                                <span class="dropdown-link-title">Case Studies</span>
+                                <p>Real-world project examples</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a class="dropdown-link" href="/Templates.html">
+                            <div>
+                                <span class="dropdown-link-title">Templates</span>
+                                <p>Downloadable cost estimation templates</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <button
+                class="nav-link dropdown-btn"
+                data-dropdown="dropdown3"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="support"
+            >
+                Support
+                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div id="dropdown3" class="dropdown">
+                <ul role="menu">
+                    <li role="menuitem">
+                        <a class="dropdown-link" href="/Help center.html">
+                            <div>
+                                <span class="dropdown-link-title">Help Center</span>
+                                <p>Find answers to your questions</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <button
+                class="nav-link dropdown-btn"
+                data-dropdown="dropdown4"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="about"
+            >
+                About
+                <i class="bx bx-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div id="dropdown4" class="dropdown">
+                <ul role="menu">
+                    <li role="menuitem">
+                        <a class="dropdown-link" href="/Company.html">
+                            <div>
+                                <span class="dropdown-link-title">Company</span>
+                                <p>Learn about our mission</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+  </nav>
+</div>  
+    
+        <div class="nav-end">
+          <div class="right-container">
+            <a href="#profile">
+              <img
+                src="/assets/images/user.jpg"
+                width="30"
+                height="30"
+                alt="user image"
+              />
+            </a>
+            <button class="btn btn-primary">Create</button>
+          </div>
+
+          <button
+            id="hamburger"
+            aria-label="hamburger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+      </header> 
+      <section class="hero">
+        <div class="container d-flex">
+          <div class="hero-text">
+            <h1 class="hero-title">Welcome to <span class="auto-type"></span></h1>
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+            <script>
+              var typed = new Typed(".auto-type", {
+                strings: ["CostCraft", "Your Budget Companion", "Smart Cost Estimation"],
+                typeSpeed: 100,
+                backSpeed: 50,
+                loop: true,
+              });
+            </script>            
+            <h2 class="hero-subtitle">Your Ultimate Cost Estimation Tool</h2>
+            <p class="hero-description">
+                Get <span class="highlight">accurate</span> and <span class="highlight">reliable</span> cost estimates for your construction projects with ease.
+            </p>
+        </div>        
+          <div class="hero-image">
+            <img src="/assets/images/main page/image x.jpeg" alt="Hero Image" style="width: 100%; height: auto;">
+          </div>
+        </div>
+      </section>
+      
+        <!-- Your Construction Partner Section -->
+        <section class="Your Construction Partner Section">
+        <div class="hero-card">
+          <h2>Your Trusted Construction Partner</h2>
+          <img src="assets/img/about/Infinty-Loop-Desktop.gif" class="img-fluid rounded-4 mb-4" alt="">
+          <p>CostCraft is your go-to solution for accurate and efficient cost estimation. Our innovative platform ensures seamless budget planning, helping contractors, builders, and homeowners streamline their projects.</p>
+          <p>With a track record of success, advanced features, and customizable entries, CostCraft transforms construction cost estimation into a hassle-free experience.</p>
+        </div>
+        <!-- Tutorial Guide Section -->
+        <div class="hero-card">
+          <h2>How to Use CostCraft for Construction Estimation</h2>
+          <ol>
+            <li>Click on the <strong>Estimate</strong> dropdown menu.</li>
+            <li>Select the <strong>Construction Cost</strong> page.</li>
+            <li>Fill out the details of your construction project. If additional elements are needed, click <strong>Add Row</strong>. The total cost will be calculated and displayed in the <strong>Total Construction Cost</strong> cell at the bottom.</li>
+            <li>Navigate to the <strong>Finishing Cost</strong> page and enter the finishing details. The calculated total finishing cost will be carried over and displayed in the <strong>Total Finishing Cost</strong> cell on the Construction Cost page.</li>
+            <li>Go to the <strong>Building Services</strong> page and fill in the required details. Click the <strong>Calculate Total Cost</strong> button to see the total building services cost, which will also be reflected on the Construction Cost page.</li>
+            <li>Click the <strong>Calculate Total Cost</strong> button at the bottom of the Construction Cost page to view the final project cost.</li>
+            <li>For information about materials used in estimation, visit the <strong>Blogs</strong> page under the <strong>Resources</strong> tab.</li>
+            <li>The <strong>Case Studies</strong> page showcases innovative construction methods used by engineers.</li>
+            <li>For help with filling details in the tables, refer to the manual on the <strong>About</strong> tab .</li>
+            <li>To check the value of different construction elements in Kenya, refer to the table displaying <strong>Average Building Material Prices</strong>.</li>
+          </ol>
+        </div>
+        <div class="features-flip">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>Real-Time Estimates</h3>
+              </div>
+              <div class="flip-card-back">
+                <p>Cost breakdowns in seconds.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>Accurate Budgets</h3>
+              </div>
+              <div class="flip-card-back">
+                <p>Stay on track, avoid surprises.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="partner-stats">
+          <div class="stat">
+            <h3><span class="counter" data-target="5000">0</span>+</h3>
+            <p>Projects Estimated</p>
+          </div>
+          <div class="stat">
+            <h3><span class="counter" data-target="1200">0</span>+</h3>
+            <p>Contractors Trusted Us</p>
+          </div>
+        </div>
+      </div>  
+        <script>
+          const counters = document.querySelectorAll('.counter');
+          counters.forEach(counter => {
+            counter.innerText = '0';
+            const updateCounter = () => {
+              const target = +counter.getAttribute('data-target');
+              const c = +counter.innerText;
+              const increment = target / 200;
+              if (c < target) {
+                counter.innerText = `${Math.ceil(c + increment)}`;
+                setTimeout(updateCounter, 10);
+              }
+            };
+            updateCounter();
+          });
+        </script>        
+      </section>
+      
+      
+  <section class="services" class="service-section">
+    <div class="container" data-aos="fade-up">
+      <h2>Our Services</h2>
+      <div class="service-item">
+        <h3>Cost Estimation</h3>
+        <p>We provide accurate and reliable cost estimation for all types of construction projects.</p>
+      </div>
+      <div class="service-item">
+        <h3>Project Management</h3>
+        <p>Our project management services ensure that your construction projects are completed on time and within budget.</p>
+      </div>
+      <div class="service-item">
+        <h3>Consulting</h3>
+        <p>We offer expert consulting services to help you plan and execute your construction projects effectively.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="/Construction cost.html" class="cta-float">
+  <i class="bi bi-calculator"></i> Estimate Now
+</a>
+
+
+    <div class="table-card">
+      <div class="excel-table">
+          <h2>Average Building Materials Prices in Kenya</h2>
+          <table id="materialsTable">
+              <thead>
+                  <tr>
+                      <th>Material</th>
+                      <th>Unit</th>
+                      <th>Average Price (Ksh)</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Rows will be populated by JavaScript -->
+              </tbody>
+          </table>
+          <p class="data-source">
+              Data sourced from 
+              <a href="https://integrum.co.ke/the-construction-costs-handbook-2020-building-materials-prices-in-kenya/" 
+                 target="_blank" rel="noopener">Integrum Construction</a>
+          </p>
+      </div>
+  </div>  
+</section>
+
+<section class="contact-us">
+  <div class="contact-footer-wrapper">
+      <!-- Contact Card -->
+      <div class="contact-card">
+          <div class="contact-info">
+              <h3>Our Location</h3>
+              <p>Costcraft Inc.</p>
+              <p>Eldoret, BT 30100</p>
+              <p>Email: costcraft01@gmail.com</p>
+              <p>Phone: +254790465548</p>
+          </div>
+          <div class="contact-form">
+              <h3>Send Us a Message</h3>
+              <form>
+                  <input type="text" name="name" placeholder="Your Name" required>
+                  <input type="email" name="email" placeholder="Your Email" required>
+                  <input type="text" name="subject" placeholder="Subject" required>
+                  <textarea name="message" placeholder="Your Message" required></textarea>
+                  <button type="submit">Send Message</button>
+              </form>
+          </div>
+      </div>
+
+      <!-- Footer Card -->
+      <div class="footer-card">
+        <!-- Logo -->
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="/assets/images/logo.png" width="80" height="80" alt="Logo">
+            </a>
+        </div>
+    
+        <!-- Tagline (Animated) -->
+        <div class="footer-tagline">
+            <p>Your Trusted Cost Estimation Partner</p>
+        </div>
+    
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
+        </div>
+    
+        <!-- Useful Links -->
+        <div class="footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Resources</a></li>
+            </ul>
+        </div>
+    
+        <!-- Language Translator -->
+        <div class="translate-container">
+            <i id="translate-icon" class="bi bi-translate"></i>
+            <div id="google_translate_element"></div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            <p>&copy; <span id="current-year"></span> Costcraft Inc. All rights reserved.</p>
+        </div>
+    </div>
+    
+    <!-- JavaScript to Update Year Dynamically -->
+    <script>
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>    
+  </div>
+<!-- Create Account Modal -->
+<div id="createAccountModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Create Account</h2>
+    <form id="createAccountForm">
+      <input type="text" placeholder="Enter Name" required>
+      <input type="email" placeholder="Enter Email" required>
+      <input type="password" placeholder="Enter Password" required>
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="#" id="loginLink">Log In</a></p>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" placeholder="Enter Email" required>
+      <input type="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#" id="createAccountLink">Create One</a></p>
+  </div>
+</div>
+
+  <main>
+  <script src="/assets/js/script.js"></script>
+  </body>
+</html>
+  <main>
+  <script src="/assets/js/script.js"></script>
+  </body>
+</html>

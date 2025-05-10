@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing | CostEstimator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Payment Methods Container */
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      max-width: 800px;
+    }
+    
+    /* Individual Payment Button */
+    .payment-button {
+      flex: 1 1 220px;
+      padding: 1.2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .payment-button:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Specific Branding */
+    .mpesa-button {
+      background-color: #34B233;
+    }
+    
+    .paypal-button {
+      background-color: #0070BA;
+    }
+    
+    .card-button {
+      background-color: #444;
+    }
+    
+    /* Responsive */
+    @media (max-width: 640px) {
+      .payment-button {
+        flex: 1 1 100%;
+      }
+    }
+    </style>
+    
+</head>
+
+<body class="bg-gray-50 font-sans">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <div class="text-xl font-bold text-blue-700">CostEstimator</div>
+    <ul class="flex space-x-6">
+      <li><a href="/index.html" class="hover:text-blue-500">Home</a></li>
+      <li><a href="/Help center.html" class="hover:text-blue-500">Help Center</a></li>
+      <li><a href="/Contact subpages/contact details page.html" class="hover:text-blue-500">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="text-center py-10">
+    <h1 class="text-4xl font-bold text-gray-800">Flexible Pricing Plans</h1>
+    <p class="text-gray-500 mt-2">Find a subscription that fits your workflow</p>
+    <div class="mt-4">
+      <button id="toggleBilling" class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">
+        Show Yearly Billing
+      </button>
+    </div>
+  </header>
+
+  <!-- Pricing Cards -->
+  <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 pb-16">
+    <!-- Weekly -->
+    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition duration-300 text-center">
+      <h3 class="text-xl font-semibold">Weekly Plan</h3>
+      <p class="text-gray-500 mb-2">Quick, flexible, pay-as-you-go</p>
+      <div class="text-3xl font-bold mb-4"><span class="weekly-price">$5</span> <span class="text-sm">/week</span></div>
+      <ul class="text-sm text-gray-600 mb-6 space-y-1">
+        <li>✔ Basic cost estimation</li>
+        <li>✔ 3 projects/week</li>
+        <li>✔ Email support</li>
+      </ul>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Choose Weekly</button>
+    </div>
+
+    <!-- Monthly -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border-2 border-blue-500 transform scale-105 text-center">
+      <h3 class="text-xl font-semibold text-blue-600">Most Popular</h3>
+      <p class="text-gray-500 mb-2">Great for regular users</p>
+      <div class="text-3xl font-bold mb-4"><span class="monthly-price">$15</span> <span class="text-sm">/month</span></div>
+      <ul class="text-sm text-gray-600 mb-6 space-y-1">
+        <li>✔ Full access to tools</li>
+        <li>✔ Unlimited projects</li>
+        <li>✔ Priority support</li>
+      </ul>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Choose Monthly</button>
+    </div>
+
+    <!-- Yearly -->
+    <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition duration-300 text-center">
+      <h3 class="text-xl font-semibold">Yearly Plan</h3>
+      <p class="text-gray-500 mb-2">Best value for professionals</p>
+      <div class="text-3xl font-bold mb-4"><span class="yearly-price hidden">$150</span><span class="monthly-price">$15</span> <span class="text-sm billing-label">/month</span></div>
+      <ul class="text-sm text-gray-600 mb-6 space-y-1">
+        <li>✔ Everything in Monthly</li>
+        <li>✔ Free consultation</li>
+        <li>✔ Dedicated manager</li>
+      </ul>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Choose Yearly</button>
+    </div>
+    <!-- Add this to your billing page below the plan cards -->
+    <section class="payment-methods">
+      <div class="payment-button mpesa-button" onclick="payWithMpesa()">Pay with M-Pesa</div>
+      <div class="payment-button paypal-button" onclick="payWithPaypal()">Pay with PayPal</div>
+      <div class="payment-button card-button" onclick="payWithCard()">Pay with Bank Card</div>
+    </section>
+    
+<!-- Example Payment Scripts -->
+<script>
+  function payWithMpesa() {
+    alert("M-Pesa integration pending. Contact support for demo.");
+    // Here you'd integrate with Daraja API or STK Push
+  }
+
+  function payWithCard() {
+    alert("Card payment integration pending. Use Stripe, Flutterwave or Paystack APIs.");
+    // Integration should be handled via API call or redirect
+  }
+</script>
+
+<!-- You can enhance this further with actual gateway SDKs -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-400 text-sm pb-4">© 2025 CostEstimator. All rights reserved.</footer>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleBilling');
+    const monthlyPrices = document.querySelectorAll('.monthly-price');
+    const yearlyPrices = document.querySelectorAll('.yearly-price');
+    const billingLabel = document.querySelector('.billing-label');
+
+    let isYearly = false;
+    toggleBtn.addEventListener('click', () => {
+      isYearly = !isYearly;
+      monthlyPrices.forEach(el => el.style.display = isYearly ? 'none' : 'inline');
+      yearlyPrices.forEach(el => el.style.display = isYearly ? 'inline' : 'none');
+      billingLabel.textContent = isYearly ? "/year" : "/month";
+      toggleBtn.textContent = isYearly ? "Show Monthly Billing" : "Show Yearly Billing";
+    });
+  </script>
+
+</body>
+</html>

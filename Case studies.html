@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        ul, ol {
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .emphasis {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .blog-post {
+            margin-bottom: 2rem;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .blog-post-details {
+            padding: 1rem 0;
+        }
+
+        .blog-post-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post-meta {
+            color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content p {
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .read-more:hover {
+            background-color: darken(var(--accent-color), 10%);
+        }
+
+        .read-more::after {
+            content: ' ➔';
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .article-content {
+                padding: 1rem;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Case studies on different construction methods and techniques</h1>
+            <p>Get the best ideas for planning your construction. the best practices and most affordable construction methods</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="article-content">
+            <div class="card-container">
+                <div class="card">
+                    <img src="/assets/images/case studies/kitengela.jpg" alt="Case Study 1">
+                    <div class="card-content">
+                        <h2>Kitengela Sintoiya Lodge</h2>
+                        <p>The commercial building in question is a hotel lodge located in Kitengela Kajiado county. It covers approximately 450 square meters on the ground floor and upper floors as well.</p>
+                        <a href="https://www.ecoconcrete.co.ke/case-study-commercial-building/" class="read-more">Read more</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/assets/images/case studies/mombasa.jpg" alt="Case Study 2">
+                    <div class="card-content">
+                        <h2>EcoConcrete Ready Precast System for Enhanced Thermal Performance in Mombasa
+                        </h2>
+                        <p>This case study demonstrates how EcoConcrete’s ready precast system was the ideal solution. Specifically, it offers superior thermal performance, energy efficiency, and comfort. Moreover, the project addresses the Client’s Challenge: managing Mombasa’s heat..</p>
+                        <a href="https://www.ecoconcrete.co.ke/ecoconcrete-ready-precast-system-for-enhanced-thermal-performance-in-mombasa/" class="read-more">Read more</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/assets/images/case studies/minimal excavation.jpg" alt="Case Study 3">
+                    <div class="card-content">
+                        <h2>Minimal Excavation and No Backfilling in Beam and Block Flooring System</h2>
+                        <p>Builders increasingly favor the Beam and Block flooring system for its speed, efficiency, and durability.
+
+                            One of the significant advantages of this system is the ability to implement minimal excavation and no backfilling. This case study examines a residential construction project that successfully utilized these principles, highlighting the benefits and processes involved..</p>
+                        <a href="https://www.ecoconcrete.co.ke/minimal-excavation-and-no-backfilling-in-beam-and-block-flooring-system/" class="read-more">Read more</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="/assets/images/case studies/ecoconcrete.jpeg" alt="Case Study 4">
+                    <div class="card-content">
+                        <h2>EcoConcrete Beam and Block System for Tent Decks at Masai Mara National Reserve</h2>
+                        <p>A client undertaking a luxury tented camp project at the renowned Masai Mara National Reserve approached EcoConcrete. The client needed a durable, elevated platform to protect the tents from the region’s damp conditions, particularly during the rainy season. The solution had to ensure longevity, hygiene, and comfort for the guests. After assessing the site and the client’s needs, EcoConcrete proposed the Beam and Block system for elevated tent decks—an effective solution that met all requirements</p>
+                        <a href="https://www.ecoconcrete.co.ke/ecoconcrete-beam-and-block-system-for-tent-decks-at-masai-mara-national-reserve/" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <a href="Contact subpages/contact details page.html">Contact Us</a>
+        <a href="/Help center.html">Help</a>
+        <a href="/Company.html">About</a>
+    </footer>
+</body>
+</html>
