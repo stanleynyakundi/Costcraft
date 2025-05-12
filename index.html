@@ -16,6 +16,27 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
 <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDjW3d-17Xhnb0pKt96tN5q9McksA2iEIE",
+    authDomain: "costcraft-d4519.firebaseapp.com",
+    projectId: "costcraft-d4519",
+    storageBucket: "costcraft-d4519.firebasestorage.app",
+    messagingSenderId: "478777408526",
+    appId: "1:478777408526:web:5b718df8a2c8d4063e905f"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
   </head>
   <body id="content">
     <header id="header" class="header d-flex align-items-center">
