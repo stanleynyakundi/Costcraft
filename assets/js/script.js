@@ -131,6 +131,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
     alert("Logged in successfully!");
     loginModal.style.display = "none";
   }
+   firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Optional: Update display name
+      return userCredential.user.updateProfile({
+        displayName: name
+      });
+    })
+    .then(() => {
+      alert("Account created successfully!");
+      // Optionally hide modal or redirect
+      document.getElementById("createAccountModal").style.display = "none";
+    })
+    .catch(error => {
+      alert("Error: " + error.message);
+    });
+  
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      alert("Login successful!");
+      document.getElementById("loginModal").style.display = "none";
+    })
+    .catch(error => {
+      alert("Login failed: " + error.message);
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
