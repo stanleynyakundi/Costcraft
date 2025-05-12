@@ -458,6 +458,23 @@
     </form>
     <p>Already have an account? <a href="#" id="loginLink">Log In</a></p>
   </div>
+  <script>
+document.getElementById("createAccountForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = this.querySelector('input[type="email"]').value;
+  const password = this.querySelector('input[type="password"]').value;
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      alert("Account created successfully!");
+      document.getElementById("createAccountModal").style.display = "none";
+    })
+    .catch(error => {
+      alert("Error: " + error.message);
+    });
+});
+</script>
+
 </div>
 
 <!-- Login Modal -->
@@ -472,6 +489,32 @@
     </form>
     <p>Don't have an account? <a href="#" id="createAccountLink">Create One</a></p>
   </div>
+  <script>
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = this.querySelector('input[type="email"]').value;
+  const password = this.querySelector('input[type="password"]').value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      alert("Logged in successfully!");
+      document.getElementById("loginModal").style.display = "none";
+    })
+    .catch(error => {
+      alert("Login failed: " + error.message);
+    });
+});
+</script>
+  <script>
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log("User logged in:", user.email);
+    // You can show a logout button or protected content
+  } else {
+    console.log("User is signed out");
+  }
+});
+</script>
 </div>
 
   <main>
