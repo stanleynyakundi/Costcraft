@@ -139,64 +139,133 @@
     </div>
 </div>
         
- <div class="card">
-  <h2>Column Bases</h2>
-  <div class="excel-table">
-    <table id="columnBaseTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Number</th>
-          <th>Base Length (mm)</th>
-          <th>Base Width (mm)</th>
-          <th>Base Thickness (mm)</th>
-          <th>Base Volume (m³)</th>
-          <th>Volume of Concrete (cu mm)</th>
-          <th>Unit Cost of Concrete (Ksh)</th>
-          <th>Quantity of Steel (kg)</th>
-          <th>Steel Fabrication Cost (Ksh)</th>
-          <th>Steel Labor Cost (Ksh)</th>
-          <th>Steel Overheads Cost (Ksh)</th>
-          <th>Unit Cost of Steel (Ksh)</th>
-          <th>Binding Wire Cost (Ksh)</th>
-          <th>Area of Formwork (sq mm)</th>
-          <th>Unit Cost of Formwork (Ksh)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="base-row">
-          <td><input type="text" class="base-name" placeholder="Base Name"></td>
-          <td><input type="number" class="base-number" placeholder="Number"></td>
-          <td><input type="number" class="base-length" placeholder="Length (mm)"></td>
-          <td><input type="number" class="base-width" placeholder="Width (mm)"></td>
-          <td><input type="number" class="base-thickness" placeholder="Thickness (mm)"></td>
-          td><input type="number" class="base-volume" placeholder="Volume (m³)" readonly></td>
-          <td><input type="number" class="concrete-volume" placeholder="Concrete Vol (cu mm)"></td>
-          <td><input type="number" class="base-concrete-unit-cost" placeholder="Concrete Unit Cost"></td>
-          <td><input type="number" class="base-steel-quantity" placeholder="Steel Qty (kg)"></td>
-          <td><input type="number" class="base-steel-fabrication-cost" placeholder="Fabrication Cost"></td>
-          <td><input type="number" class="base-steel-labor-cost" placeholder="Labor Cost"></td>
-          <td><input type="number" class="base-steel-overheads-cost" placeholder="Overheads Cost"></td>
-          <td><input type="number" class="base-steel-unit-cost" placeholder="Steel Unit Cost"></td>
-          <td><input type="number" class="base-binding-wire-cost" placeholder="Binding Wire Cost"></td>
-          <td><input type="number" class="base-formwork-area" placeholder="Formwork Area"></td>
-          <td><input type="number" class="base-formwork-unit-cost" placeholder="Formwork Unit Cost"></td>
-        </tr>
-      </tbody>
-    </table>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Column Base Test</title>
+  <style>
+    .excel-table table { border-collapse: collapse; width: 100%; }
+    .excel-table th, td { border: 1px solid #aaa; padding: 4px; }
+    .button-group { margin-top: 8px; }
+  </style>
+</head>
+<body>
 
-    <div class="button-group">
-      <button id="addBaseRowButton">Add Base Row</button>
-      <button id="deleteBaseRowButton">Delete Last Base Row</button>
-      <button id="clearBaseTableButton">Clear All Bases</button>
-    </div>
+  <div class="card">
+    <h2>Column Bases</h2>
+    <div class="excel-table">
+      <table id="columnBaseTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Length (mm)</th>
+            <th>Width (mm)</th>
+            <th>Thickness (mm)</th>
+            <th>Volume (m³)</th>
+            <th>Conc Unit Cost</th>
+            <th>Steel Qty (kg)</th>
+            <th>Steel Fab Cost</th>
+            <th>Steel Labor</th>
+            <th>Steel Overheads</th>
+            <th>Steel Unit Cost</th>
+            <th>Binding Wire</th>
+            <th>Formwork Area (mm²)</th>
+            <th>Formwork Unit Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="base-row">
+            <td><input class="base-name" placeholder="Name"></td>
+            <td><input type="number" class="base-number"></td>
+            <td><input type="number" class="base-length"></td>
+            <td><input type="number" class="base-width"></td>
+            <td><input type="number" class="base-thickness"></td>
+            <td><input type="number" class="base-volume" readonly></td>
+            <td><input type="number" class="base-concrete-unit-cost"></td>
+            <td><input type="number" class="base-steel-quantity"></td>
+            <td><input type="number" class="base-steel-fabrication-cost"></td>
+            <td><input type="number" class="base-steel-labor-cost"></td>
+            <td><input type="number" class="base-steel-overheads-cost"></td>
+            <td><input type="number" class="base-steel-unit-cost"></td>
+            <td><input type="number" class="base-binding-wire-cost"></td>
+            <td><input type="number" class="base-formwork-area"></td>
+            <td><input type="number" class="base-formwork-unit-cost"></td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="total-cost">
-      <label>Total Column Base Cost:</label>
-      <input type="text" id="totalBaseCost" placeholder="Total Base Cost" disabled>
+      <div class="button-group">
+        <button id="addBaseRowButton">Add Row</button>
+        <button id="deleteBaseRowButton">Delete Row</button>
+        <button id="clearBaseTableButton">Clear</button>
+      </div>
+
+      <div class="total-cost">
+        <label>Total Base Cost:</label>
+        <input id="totalColumnBaseCost" disabled>
+      </div>
     </div>
   </div>
-</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.querySelector('#columnBaseTable tbody');
+      const totalCostInput = document.getElementById('totalColumnBaseCost');
+
+      function calcRow(row) {
+        const n = +row.querySelector('.base-number').value || 0;
+        const L = (+row.querySelector('.base-length').value  || 0) / 1000;
+        const W = (+row.querySelector('.base-width').value   || 0) / 1000;
+        const T = (+row.querySelector('.base-thickness').value || 0) / 1000;
+        const concUC = +row.querySelector('.base-concrete-unit-cost').value || 0;
+        const steelKg = +row.querySelector('.base-steel-quantity').value || 0;
+        const steelUC = +row.querySelector('.base-steel-unit-cost').value || 0;
+        const fab = +row.querySelector('.base-steel-fabrication-cost').value || 0;
+        const lab = +row.querySelector('.base-steel-labor-cost').value || 0;
+        const ovhd = +row.querySelector('.base-steel-overheads-cost').value || 0;
+        const bind = +row.querySelector('.base-binding-wire-cost').value || 0;
+        const A = +row.querySelector('.base-formwork-area').value || 0;
+        const fUC= +row.querySelector('.base-formwork-unit-cost').value || 0;
+
+        const vol = L * W * T;
+        row.querySelector('.base-volume').value = vol.toFixed(4);
+
+        const concreteCost = vol * concUC;
+        const steelCost    = steelKg * steelUC;
+        const formworkCost = (A / 1e6) * fUC;
+        return (concreteCost + steelCost + fab + lab + ovhd + bind + formworkCost) * n;
+      }
+
+      function recalcAll() {
+        let sum = 0;
+        tbody.querySelectorAll('.base-row').forEach(r => sum += calcRow(r));
+        totalCostInput.value = sum.toFixed(2);
+      }
+
+      document.getElementById('addBaseRowButton').onclick = () => {
+        const tr = tbody.firstElementChild.cloneNode(true);
+        tr.querySelectorAll('input').forEach(i => i.value = '');
+        tbody.appendChild(tr);
+        tr.querySelectorAll('input').forEach(i => i.addEventListener('input', recalcAll));
+      };
+      document.getElementById('deleteBaseRowButton').onclick = () => {
+        if (tbody.children.length>1) { tbody.lastElementChild.remove(); recalcAll(); }
+        else alert('Need at least one row.');
+      };
+      document.getElementById('clearBaseTableButton').onclick = () => {
+        tbody.querySelectorAll('input').forEach(i=>i.value=''); recalcAll();
+      };
+      tbody.querySelectorAll('input').forEach(i => i.addEventListener('input', recalcAll));
+
+      recalcAll();
+    });
+  </script>
+
+</body>
+</html>
+
        
         <!-- Walls Section -->
         <div class="card">
