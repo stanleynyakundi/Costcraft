@@ -270,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-        
 document.addEventListener('DOMContentLoaded', function () {
   const baseTableBody = document.querySelector('#columnBaseTable tbody');
   const totalBaseCostInput = document.getElementById('totalColumnBaseCost');
@@ -362,7 +361,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initial calc
   calculateTotalBaseCost();
 });
-
 
 
 
