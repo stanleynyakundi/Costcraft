@@ -269,7 +269,108 @@ document.addEventListener('DOMContentLoaded', function () {
     calculateTotalColumnCost();
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const baseTableBody = document.getElementById('columnBaseTable').querySelector('tbody');
+    const totalBaseCostInput = document.getElementById('totalColumnBaseCost');
 
+    function calculateBaseRowCost(row) {
+        const length = parseFloat(row.querySelector('.base-length')?.value) || 0;
+        const width = parseFloat(row.querySelector('.base-width')?.value) || 0;
+        const thickness = parseFloat(row.querySelector('.base-thickness')?.value) || 0;
+        const number = parseFloat(row.querySelector('.base-number')?.value) || 0;
+
+        const volume = length * width * thickness; // cu mm
+        row.querySelector('.base-volume').value = volume.toFixed(2);
+        row.querySelector('.base-concrete-volume').value = volume.toFixed(2); // identical for now
+
+        const concreteUnitCost = parseFloat(row.querySelector('.base-concrete-unit-cost')?.value) || 0;
+        const steelQuantity = parseFloat(row.querySelector('.base-steel-quantity')?.value) || 0;
+        const steelFabricationCost = parseFloat(row.querySelector('.base-steel-fabrication-cost')?.value) || 0;
+        const steelLaborCost = parseFloat(row.querySelector('.base-steel-labor-cost')?.value) || 0;
+        const steelOverheadsCost = parseFloat(row.querySelector('.base-steel-overheads-cost')?.value) || 0;
+        const steelUnitCost = parseFloat(row.querySelector('.base-steel-unit-cost')?.value) || 0;
+        const bindingWireCost = parseFloat(row.querySelector('.base-binding-wire-cost')?.value) || 0;
+        const formworkArea = parseFloat(row.querySelector('.base-formwork-area')?.value) || 0;
+        const formworkUnitCost = parseFloat(row.querySelector('.base-formwork-unit-cost')?.value) || 0;
+
+        const concreteCost = (volume / 1e9) * concreteUnitCost; // mm³ to m³
+        const steelCost = steelQuantity * steelUnitCost;
+        const formworkCost = (formworkArea / 1e6) * formworkUnitCost; // mm² to m²
+
+        const totalCost = (concreteCost + steelCost + steelFabricationCost + steelLaborCost +
+            steelOverheadsCost + bindingWireCost + formworkCost) * number;
+
+        return totalCost;
+    }
+
+    function calculateTotalBaseCost() {
+        let total = 0;
+        document.querySelectorAll('#columnBaseTable .base-row').forEach(row => {
+            total += calculateBaseRowCost(row);
+        });
+        totalBaseCostInput.value = total.toFixed(2);
+    }
+
+    function addBaseRow() {
+        const newRow = document.createElement('tr');
+        newRow.classList.add('base-row');
+        newRow.innerHTML = `
+            <td><input type="text" class="base-name" placeholder="Base Name"></td>
+            <td><input type="number" class="base-length" placeholder="Length (mm)"></td>
+            <td><input type="number" class="base-width" placeholder="Width (mm)"></td>
+            <td><input type="number" class="base-thickness" placeholder="Thickness (mm)"></td>
+            <td><input type="number" class="base-volume" placeholder="Volume (cu mm)" readonly></td>
+            <td><input type="number" class="base-number" placeholder="Number"></td>
+            <td><input type="number" class="base-concrete-volume" placeholder="Concrete Volume (cu mm)" readonly></td>
+            <td><input type="number" class="base-concrete-unit-cost" placeholder="Concrete Unit Cost (Ksh)"></td>
+            <td><input type="number" class="base-steel-quantity" placeholder="Steel Quantity (kg)"></td>
+            <td><input type="number" class="base-steel-fabrication-cost" placeholder="Steel Fabrication Cost (Ksh)"></td>
+            <td><input type="number" class="base-steel-labor-cost" placeholder="Steel Labor Cost (Ksh)"></td>
+            <td><input type="number" class="base-steel-overheads-cost" placeholder="Steel Overheads Cost (Ksh)"></td>
+            <td><input type="number" class="base-steel-unit-cost" placeholder="Steel Unit Cost (Ksh)"></td>
+            <td><input type="number" class="base-binding-wire-cost" placeholder="Binding Wire Cost (Ksh)"></td>
+            <td><input type="number" class="base-formwork-area" placeholder="Formwork Area (sq mm)"></td>
+            <td><input type="number" class="base-formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
+        `;
+        baseTableBody.appendChild(newRow);
+        newRow.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', calculateTotalBaseCost);
+        });
+    }
+
+    function deleteLastBaseRow() {
+        const rows = document.querySelectorAll('#columnBaseTable .base-row');
+        if (rows.length > 1) {
+            rows[rows.length - 1].remove();
+            calculateTotalBaseCost();
+        } else {
+            alert("At least one base row must remain.");
+        }
+    }
+
+    function clearBaseTable() {
+        document.querySelectorAll('#columnBaseTable .base-row input').forEach(input => {
+            input.value = '';
+        });
+        totalBaseCostInput.value = '';
+    }
+
+    // Initial event bindings
+    document.querySelectorAll('#columnBaseTable .base-row input').forEach(input => {
+        input.addEventListener('input', calculateTotalBaseCost);
+    });
+
+    document.getElementById('addBaseRowButton').addEventListener('click', addBaseRow);
+    document.getElementById('deleteBaseRowButton').addEventListener('click', deleteLastBaseRow);
+    document.getElementById('clearBaseTableButton').addEventListener('click', clearBaseTable);
+
+    calculateTotalBaseCost();
+});
+
+
+
+
+        
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Walling Cost Script Loaded and DOM is Ready");
 
