@@ -139,7 +139,65 @@
     </div>
 </div>
         
-        
+ <div class="card">
+  <h2>Column Bases</h2>
+  <div class="excel-table">
+    <table id="columnBaseTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Number</th>
+          <th>Base Length (mm)</th>
+          <th>Base Width (mm)</th>
+          <th>Base Thickness (mm)</th>
+          <th>Base Volume (cu mm)</th>
+          <th>Volume of Concrete (cu mm)</th>
+          <th>Unit Cost of Concrete (Ksh)</th>
+          <th>Quantity of Steel (kg)</th>
+          <th>Steel Fabrication Cost (Ksh)</th>
+          <th>Steel Labor Cost (Ksh)</th>
+          <th>Steel Overheads Cost (Ksh)</th>
+          <th>Unit Cost of Steel (Ksh)</th>
+          <th>Binding Wire Cost (Ksh)</th>
+          <th>Area of Formwork (sq mm)</th>
+          <th>Unit Cost of Formwork (Ksh)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="base-row">
+          <td><input type="text" class="base-name" placeholder="Base Name"></td>
+          <td><input type="number" class="base-number" placeholder="Number"></td>
+          <td><input type="number" class="base-length" placeholder="Length (mm)"></td>
+          <td><input type="number" class="base-width" placeholder="Width (mm)"></td>
+          <td><input type="number" class="base-thickness" placeholder="Thickness (mm)"></td>
+          <td><input type="number" class="base-volume" placeholder="Volume (cu mm)" readonly></td>
+          <td><input type="number" class="concrete-volume" placeholder="Concrete Vol (cu mm)"></td>
+          <td><input type="number" class="base-concrete-unit-cost" placeholder="Concrete Unit Cost"></td>
+          <td><input type="number" class="base-steel-quantity" placeholder="Steel Qty (kg)"></td>
+          <td><input type="number" class="base-steel-fabrication-cost" placeholder="Fabrication Cost"></td>
+          <td><input type="number" class="base-steel-labor-cost" placeholder="Labor Cost"></td>
+          <td><input type="number" class="base-steel-overheads-cost" placeholder="Overheads Cost"></td>
+          <td><input type="number" class="base-steel-unit-cost" placeholder="Steel Unit Cost"></td>
+          <td><input type="number" class="base-binding-wire-cost" placeholder="Binding Wire Cost"></td>
+          <td><input type="number" class="base-formwork-area" placeholder="Formwork Area"></td>
+          <td><input type="number" class="base-formwork-unit-cost" placeholder="Formwork Unit Cost"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="button-group">
+      <button id="addBaseRowButton">Add Base Row</button>
+      <button id="deleteBaseRowButton">Delete Last Base Row</button>
+      <button id="clearBaseTableButton">Clear All Bases</button>
+    </div>
+
+    <div class="total-cost">
+      <label>Total Column Base Cost:</label>
+      <input type="text" id="totalBaseCost" placeholder="Total Base Cost" disabled>
+    </div>
+  </div>
+</div>
+       
         <!-- Walls Section -->
         <div class="card">
             <h2>Walls</h2>
