@@ -3089,6 +3089,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function calculateTotalConstructionCost() {
         const totalBeamCost = parseFloat(document.getElementById("totalBeamCost").value) || 0;
         const totalColumnCost = parseFloat(document.getElementById("totalColumnCost").value) || 0;
+        const totalBaseCost   = parseFloat(document.getElementById("totalColumnBaseCost").value) || 0; 
         const totalWallingCost = parseFloat(document.getElementById("totalWallingCost").value) || 0;
         const totalDoorWindowCost = parseFloat(document.getElementById("totalDoorWindowCost").value) || 0;
         const totalFoundationCost = parseFloat(document.getElementById("totalFoundationCost").value) || 0;
@@ -3100,7 +3101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const estimatedContingencyCost = parseFloat(document.getElementById("estimatedContingencyCost").value) || 0;
         const totalOverheadCost = parseFloat(document.getElementById("totalOverheadCost").value) || 0;
 
-        const totalConstructionCost = totalBeamCost + totalColumnCost + totalWallingCost + totalDoorWindowCost +
+        const totalConstructionCost = totalBeamCost + totalColumnCost  + totalBaseCost + totalWallingCost + totalDoorWindowCost +
             totalFoundationCost + totalExcavationCost + totalRoofingCost + totalFlooringCost + totalCeilingCost +
             totalEquipmentCost + estimatedContingencyCost + totalOverheadCost;
 
