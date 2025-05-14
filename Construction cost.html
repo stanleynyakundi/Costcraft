@@ -200,6 +200,9 @@
         <button id="addBaseRowButton">Add Row</button>
         <button id="deleteBaseRowButton">Delete Row</button>
         <button id="clearBaseTableButton">Clear</button>
+         <button id="saveBaseTableButton">Save</button>
+        <button id="loadBaseTableButton">Load</button>
+
       </div>
 
       <div class="total-cost">
@@ -244,6 +247,7 @@
         totalCostInput.value = sum.toFixed(2);
       }
 
+
       document.getElementById('addBaseRowButton').onclick = () => {
         const tr = tbody.firstElementChild.cloneNode(true);
         tr.querySelectorAll('input').forEach(i => i.value = '');
@@ -258,6 +262,73 @@
         tbody.querySelectorAll('input').forEach(i=>i.value=''); recalcAll();
       };
       tbody.querySelectorAll('input').forEach(i => i.addEventListener('input', recalcAll));
+
+         function saveBaseTable() {
+    // 1. Gather all row data (inputs only)
+    const data = Array.from(tbody.querySelectorAll('.base-row')).map(row => {
+      return Array.from(row.querySelectorAll('input')).reduce((obj, inp) => {
+        // use each input’s className as the key
+        obj[inp.className] = inp.value;
+        return obj;
+      }, {});
+    });
+    // 2. Save the rows JSON
+    localStorage.setItem('columnBases', JSON.stringify(data));
+    // 3. Save the totalBaseCost separately
+    localStorage.setItem('totalColumnBaseCost', totalBaseInput.value);
+    alert('Column bases saved.');
+  }
+
+  function loadBaseTable() {
+    const json = localStorage.getItem('columnBases');
+    if (!json) {
+      alert('No saved base data found.');
+      return;
+    }
+    const data = JSON.parse(json);
+
+    // 1. Clear existing rows
+    tbody.innerHTML = '';
+
+    // 2. Rebuild each saved row
+    data.forEach(item => {
+      const tr = document.createElement('tr');
+      tr.classList.add('base-row');
+      tr.innerHTML = `
+        <td><input class="base-name"                value="${item['base-name']                || ''}"></td>
+        <td><input type="number" class="base-number" value="${item['base-number']              || ''}"></td>
+        <td><input type="number" class="base-length" value="${item['base-length']              || ''}"></td>
+        <td><input type="number" class="base-width"  value="${item['base-width']               || ''}"></td>
+        <td><input type="number" class="base-thickness" value="${item['base-thickness']        || ''}"></td>
+        <td><input type="number" class="base-volume" readonly></td>
+        <td><input type="number" class="base-concrete-unit-cost" value="${item['base-concrete-unit-cost']|| ''}"></td>
+        <td><input type="number" class="base-steel-quantity"      value="${item['base-steel-quantity']     || ''}"></td>
+        <td><input type="number" class="base-steel-fabrication-cost" value="${item['base-steel-fabrication-cost']|| ''}"></td>
+        <td><input type="number" class="base-steel-labor-cost"    value="${item['base-steel-labor-cost']    || ''}"></td>
+        <td><input type="number" class="base-steel-overheads-cost" value="${item['base-steel-overheads-cost']|| ''}"></td>
+        <td><input type="number" class="base-steel-unit-cost"     value="${item['base-steel-unit-cost']     || ''}"></td>
+        <td><input type="number" class="base-binding-wire-cost"   value="${item['base-binding-wire-cost']   || ''}"></td>
+        <td><input type="number" class="base-formwork-area"       value="${item['base-formwork-area']       || ''}"></td>
+        <td><input type="number" class="base-formwork-unit-cost"  value="${item['base-formwork-unit-cost']  || ''}"></td>
+      `;
+      // 3. Append and re‐attach listeners
+      tbody.appendChild(tr);
+      tr.querySelectorAll('input').forEach(i => i.addEventListener('input', recalcAll));
+    });
+
+    // 4. Restore totalBaseCost
+    const savedTotal = localStorage.getItem('totalColumnBaseCost');
+    if (savedTotal !== null) totalBaseInput.value = savedTotal;
+
+    // 5. Recalculate volumes & grand total
+    recalcAll();
+    alert('Column bases loaded.');
+  }
+
+  // 2️⃣ Then, immediately after your other button bindings, hook up Save/Load:
+
+  document.getElementById('saveBaseTableButton').addEventListener('click', saveBaseTable);
+  document.getElementById('loadBaseTableButton').addEventListener('click', loadBaseTable);
 
       recalcAll();
     });
