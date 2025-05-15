@@ -3098,13 +3098,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const totalFlooringCost = parseFloat(document.getElementById("totalFlooringCost").value) || 0;
         const totalSlabCost = parseFloat(document.getElementById("totalSlabCost").value) || 0;
         const totalCeilingCost = parseFloat(document.getElementById("totalCeilingCost").value) || 0;
+        const totalStaircaseCost = parseFloat(document.getElementById("totalStaircaseCost").value) || 0;
         const totalEquipmentCost = parseFloat(document.getElementById("totalEquipmentCost").value) || 0;
         const estimatedContingencyCost = parseFloat(document.getElementById("estimatedContingencyCost").value) || 0;
         const totalOverheadCost = parseFloat(document.getElementById("totalOverheadCost").value) || 0;
 
         const totalConstructionCost = totalBeamCost + totalColumnCost  + totalBaseCost + totalWallingCost + totalDoorWindowCost +
             totalFoundationCost + totalExcavationCost + totalRoofingCost + totalFlooringCost + totalCeilingCost +
-            totalEquipmentCost + estimatedContingencyCost + totalSlabCost + totalOverheadCost;
+            totalEquipmentCost + estimatedContingencyCost + totalSlabCost + totalStaircaseCost + totalOverheadCost;
 
         document.getElementById("totalConstructionCost").value = totalConstructionCost.toFixed(2);
     }
@@ -3362,5 +3363,128 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('clearSlabTableBtn').addEventListener('click', clearSlabTable);
   document.getElementById('saveSlabTableBtn').addEventListener('click', saveSlabTable);
   document.getElementById('loadSlabTableBtn').addEventListener('click', loadSlabTable);
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.querySelector("#staircaseTable tbody");
+    const totalCostDisplay = document.getElementById("totalStaircaseCost");
+
+    function calculateRowCost(row) {
+        const steps = parseFloat(row.querySelector('.steps')?.value) || 0;
+        const riser = parseFloat(row.querySelector('.riser')?.value) || 0;
+        const tread = parseFloat(row.querySelector('.tread')?.value) || 0;
+        const length = parseFloat(row.querySelector('.length')?.value) || 0;
+        const width = parseFloat(row.querySelector('.width')?.value) || 0;
+        const landingArea = parseFloat(row.querySelector('.landing-area')?.value) || 0;
+        const concreteUnitCost = parseFloat(row.querySelector('.concrete-unit-cost')?.value) || 0;
+
+        const handrailLength = parseFloat(row.querySelector('.handrail-length')?.value) || 0;
+        const handrailCostPerM = parseFloat(row.querySelector('.handrail-cost')?.value) || 0;
+
+        const railingLength = parseFloat(row.querySelector('.railing-length')?.value) || 0;
+        const railingCostPerM = parseFloat(row.querySelector('.railing-cost')?.value) || 0;
+
+        const formworkArea = parseFloat(row.querySelector('.formwork-area')?.value) || 0;
+        const formworkUnitCost = parseFloat(row.querySelector('.formwork-unit-cost')?.value) || 0;
+
+        const steelWeight = parseFloat(row.querySelector('.steel-weight')?.value) || 0;
+        const steelUnitCost = parseFloat(row.querySelector('.steel-unit-cost')?.value) || 0;
+        const steelFabricationCost = parseFloat(row.querySelector('.steel-fabrication-cost')?.value) || 0;
+
+        const volumeM3 = (steps * tread * riser * width + landingArea * 0.15) / 1e9;
+        const concreteCost = volumeM3 * concreteUnitCost;
+        const handrailCost = (handrailLength / 1000) * handrailCostPerM;
+        const railingCost = (railingLength / 1000) * railingCostPerM;
+        const formworkCost = (formworkArea / 1e6) * formworkUnitCost;
+        const steelCost = steelWeight * steelUnitCost;
+
+        const totalCost = concreteCost + handrailCost + railingCost + formworkCost + steelCost + steelFabricationCost;
+
+        row.querySelector('.concrete-volume').value = volumeM3.toFixed(3);
+        row.querySelector('.total-cost').value = totalCost.toFixed(2);
+
+        return totalCost;
+    }
+
+    function calculateTotalStairCost() {
+        let total = 0;
+        document.querySelectorAll("#staircaseTable tbody .row").forEach(row => {
+            total += calculateRowCost(row);
+        });
+        totalCostDisplay.value = total.toFixed(2);
+    }
+
+    function addRow() {
+        const newRow = tableBody.querySelector('.row').cloneNode(true);
+        newRow.querySelectorAll('input').forEach(input => input.value = '');
+        tableBody.appendChild(newRow);
+        attachInputListeners(newRow);
+    }
+
+    function deleteLastRow() {
+        const rows = tableBody.querySelectorAll('.row');
+        if (rows.length > 1) {
+            rows[rows.length - 1].remove();
+            calculateTotalStairCost();
+        } else {
+            alert("At least one row is required.");
+        }
+    }
+
+    function clearAllRows() {
+        tableBody.querySelectorAll('.row input').forEach(input => input.value = '');
+        totalCostDisplay.value = '';
+    }
+
+    function saveStairData() {
+        const data = [];
+        tableBody.querySelectorAll('.row').forEach(row => {
+            const rowData = {};
+            row.querySelectorAll('input, select').forEach(input => {
+                rowData[input.className] = input.value;
+            });
+            data.push(rowData);
+        });
+        localStorage.setItem("staircaseData", JSON.stringify(data));
+        localStorage.setItem("totalStaircaseCost", totalCostDisplay.value);
+    }
+
+    function loadStairData() {
+        const data = JSON.parse(localStorage.getItem("staircaseData")) || [];
+        const cost = localStorage.getItem("totalStaircaseCost") || '';
+        tableBody.innerHTML = '';
+        data.forEach(rowData => {
+            const newRow = tableBody.querySelector('.row')?.cloneNode(true) || document.createElement('tr');
+            newRow.classList.add('row');
+            newRow.innerHTML = tableBody.querySelector('.row').innerHTML;
+            newRow.querySelectorAll('input, select').forEach(input => {
+                input.value = rowData[input.className] || '';
+            });
+            tableBody.appendChild(newRow);
+        });
+        attachAllListeners();
+        totalCostDisplay.value = cost;
+    }
+
+    function attachInputListeners(row) {
+        row.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('input', calculateTotalStairCost);
+        });
+    }
+
+    function attachAllListeners() {
+        document.querySelectorAll("#staircaseTable .row").forEach(row => attachInputListeners(row));
+    }
+
+    attachAllListeners();
+
+    document.getElementById("addStairRowButton").addEventListener("click", addRow);
+    document.getElementById("deleteStairRowButton").addEventListener("click", deleteLastRow);
+    document.getElementById("clearStairTableButton").addEventListener("click", clearAllRows);
+    document.getElementById("saveStairDataButton").addEventListener("click", saveStairData);
+    document.getElementById("loadStairDataButton").addEventListener("click", loadStairData);
+
+    calculateTotalStairCost();
 });
 
