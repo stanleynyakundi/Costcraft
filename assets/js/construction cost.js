@@ -486,24 +486,35 @@ document.addEventListener('DOMContentLoaded', function () {
     calculateTotalWallingCost();
 });
 
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log("Doors and Windows Script Loaded");
 
     const doorWindowTable = document.getElementById('doorWindowTable').querySelector('tbody');
     const totalDoorWindowCostInput = document.getElementById('totalDoorWindowCost');
 
     function calculateRowCost(row) {
+        // --- WINDOW FIELDS ---
         const numWindows = parseFloat(row.querySelector('.num-windows')?.value) || 0;
         const costWindowType = parseFloat(row.querySelector('.cost-window-type')?.value) || 0;
+        const sillCost = parseFloat(row.querySelector('.sill-cost')?.value) || 0;
+        const pelmetCost = parseFloat(row.querySelector('.pelmet-cost')?.value) || 0;
+        const fasciaCost = parseFloat(row.querySelector('.fascia-cost')?.value) || 0;
+        const bearersCost = parseFloat(row.querySelector('.bearers-cost')?.value) || 0;
+        const curtainCost = parseFloat(row.querySelector('.curtain-cost')?.value) || 0;
+
+        // --- DOOR FIELDS ---
         const numDoors = parseFloat(row.querySelector('.num-doors')?.value) || 0;
         const costDoorType = parseFloat(row.querySelector('.cost-door-type')?.value) || 0;
+        const frameCost = parseFloat(row.querySelector('.frame-cost')?.value) || 0;
+        const varnishCost = parseFloat(row.querySelector('.varnish-cost')?.value) || 0;
+        const surfaceCost = parseFloat(row.querySelector('.surface-cost')?.value) || 0;
+        const hardwareCost = parseFloat(row.querySelector('.hardware-cost')?.value) || 0;
 
-        // Calculate total cost for windows and doors
-        const totalCostWindows = numWindows * costWindowType;
-        const totalCostDoors = numDoors * costDoorType;
+        // --- TOTALS ---
+        const totalCostWindows = numWindows * costWindowType + sillCost + pelmetCost + fasciaCost + bearersCost + curtainCost;
+        const totalCostDoors = numDoors * costDoorType + frameCost + varnishCost + surfaceCost + hardwareCost;
 
-        // Update total cost fields
+        // --- SET TOTAL CELLS ---
         row.querySelector('.total-cost-windows').value = totalCostWindows.toFixed(2);
         row.querySelector('.total-cost-doors').value = totalCostDoors.toFixed(2);
 
@@ -515,33 +526,82 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.door-window-row').forEach(row => {
             totalCost += calculateRowCost(row);
         });
-
         totalDoorWindowCostInput.value = totalCost.toFixed(2);
-        
     }
 
     function addDoorWindowRow() {
         const newRow = document.createElement('tr');
         newRow.classList.add('door-window-row');
         newRow.innerHTML = `
-            <td><input type="number" class="num-windows" placeholder="Number of Windows"></td>
-            <td><input type="text" class="window-type" placeholder="Type of Window"></td>
-            <td><input type="number" class="cost-window-type" placeholder="Cost of Window Type"></td>
-            <td><input type="number" class="total-cost-windows" placeholder="Total Cost of Windows" readonly></td>
-            <td><input type="number" class="num-doors" placeholder="Number of Doors"></td>
-            <td><input type="text" class="door-type" placeholder="Type of Door"></td>
-            <td><input type="number" class="cost-door-type" placeholder="Cost of Door Type"></td>
-            <td><input type="number" class="total-cost-doors" placeholder="Total Cost of Doors" readonly></td>
+            <td><input type="number" class="num-windows"></td>
+            <td>
+                <select class="window-type">
+                    <option value="casement">Casement</option>
+                    <option value="sliding">Sliding</option>
+                    <option value="double-hung">Double-Hung</option>
+                    <option value="awning">Awning</option>
+                    <option value="bay">Bay</option>
+                </select>
+            </td>
+            <td>
+                <select class="window-material">
+                    <option value="vinyl">Vinyl</option>
+                    <option value="aluminum">Aluminum</option>
+                    <option value="wood">Wood</option>
+                    <option value="fiberglass">Fiberglass</option>
+                    <option value="composite">Composite</option>
+                    <option value="wood-clad">Wood-Clad</option>
+                </select>
+            </td>
+            <td><input type="number" class="cost-window-type"></td>
+            <td><input type="number" class="sill-cost"></td>
+            <td>
+                <select class="glazing-type">
+                    <option value="float">Float Glass</option>
+                    <option value="tempered">Tempered Glass</option>
+                    <option value="laminated">Laminated Glass</option>
+                    <option value="coated">Coated Glass (Low-E)</option>
+                </select>
+            </td>
+            <td><input type="number" class="pelmet-cost"></td>
+            <td><input type="number" class="fascia-cost"></td>
+            <td><input type="number" class="bearers-cost"></td>
+            <td><input type="number" class="curtain-cost"></td>
+            <td><input type="number" class="total-cost-windows" readonly></td>
+
+            <td><input type="number" class="num-doors"></td>
+            <td>
+                <select class="door-type">
+                    <option value="panel">Panel Door</option>
+                    <option value="flush">Flush Door</option>
+                    <option value="french">French Door</option>
+                    <option value="sliding">Sliding Door</option>
+                    <option value="bifold">Bi-fold Door</option>
+                    <option value="pocket">Pocket Door</option>
+                    <option value="dutch">Dutch Door</option>
+                    <option value="pivot">Pivot Door</option>
+                </select>
+            </td>
+            <td>
+                <select class="door-material">
+                    <option value="wood">Wood</option>
+                    <option value="steel">Steel</option>
+                    <option value="uPVC">uPVC</option>
+                    <option value="glass">Glass</option>
+                    <option value="composite">Composite</option>
+                </select>
+            </td>
+            <td><input type="number" class="cost-door-type"></td>
+            <td><input type="number" class="frame-cost"></td>
+            <td><input type="number" class="varnish-cost"></td>
+            <td><input type="number" class="surface-cost"></td>
+            <td><input type="number" class="hardware-cost"></td>
+            <td><input type="number" class="total-cost-doors" readonly></td>
         `;
-
         doorWindowTable.appendChild(newRow);
-
-        // Attach event listeners to new row inputs for real-time calculations
-        newRow.querySelectorAll('input').forEach(input => {
+        newRow.querySelectorAll('input, select').forEach(input => {
             input.addEventListener('input', calculateTotalDoorWindowCost);
         });
-
-        console.log("New door/window row added!");
     }
 
     function deleteLastDoorWindowRow() {
@@ -549,75 +609,91 @@ document.addEventListener('DOMContentLoaded', function() {
         if (rows.length > 1) {
             rows[rows.length - 1].remove();
             calculateTotalDoorWindowCost();
-            console.log("Last door/window row deleted.");
         } else {
             alert("At least one row must remain.");
         }
-        function saveDoorWindowData() {
-            const data = [];
-            document.querySelectorAll('.door-window-row').forEach(row => {
-                data.push({
-                    numWindows: row.querySelector('.num-windows').value,
-                    windowType: row.querySelector('.window-type').value,
-                    costWindowType: row.querySelector('.cost-window-type').value,
-                    totalCostWindows: row.querySelector('.total-cost-windows').value,
-                    numDoors: row.querySelector('.num-doors').value,
-                    doorType: row.querySelector('.door-type').value,
-                    costDoorType: row.querySelector('.cost-door-type').value,
-                    totalCostDoors: row.querySelector('.total-cost-doors').value
-                });
-            });
-        
-            const totalCost = document.getElementById('totalDoorWindowCost').value;
-        
-            localStorage.setItem('doorWindowData', JSON.stringify(data));
-            localStorage.setItem('totalDoorWindowCost', totalCost);
-        }
-        function loadDoorWindowData() {
-            const data = JSON.parse(localStorage.getItem('doorWindowData') || '[]');
-            const totalCost = localStorage.getItem('totalDoorWindowCost') || '0';
-        
-            doorWindowTable.innerHTML = ''; // Clear existing rows
-        
-            data.forEach(item => {
-                const newRow = document.createElement('tr');
-                newRow.classList.add('door-window-row');
-                newRow.innerHTML = `
-                    <td><input type="number" class="num-windows" value="${item.numWindows}"></td>
-                    <td><input type="text" class="window-type" value="${item.windowType}"></td>
-                    <td><input type="number" class="cost-window-type" value="${item.costWindowType}"></td>
-                    <td><input type="number" class="total-cost-windows" value="${item.totalCostWindows}" readonly></td>
-                    <td><input type="number" class="num-doors" value="${item.numDoors}"></td>
-                    <td><input type="text" class="door-type" value="${item.doorType}"></td>
-                    <td><input type="number" class="cost-door-type" value="${item.costDoorType}"></td>
-                    <td><input type="number" class="total-cost-doors" value="${item.totalCostDoors}" readonly></td>
-                `;
-        
-                doorWindowTable.appendChild(newRow);
-        
-                newRow.querySelectorAll('input').forEach(input => {
-                    input.addEventListener('input', () => {
-                        calculateTotalDoorWindowCost();
-                        saveDoorWindowData(); // Save on every change
-                    });
-                });
-            });
-        
-            totalDoorWindowCostInput.value = parseFloat(totalCost).toFixed(2);
-        }
-                
     }
 
-    // Attach event listeners to existing rows
-    document.querySelectorAll('.door-window-row input').forEach(input => {
+    function saveDoorWindowData() {
+        const data = [];
+        document.querySelectorAll('.door-window-row').forEach(row => {
+            data.push({
+                numWindows: row.querySelector('.num-windows')?.value,
+                windowType: row.querySelector('.window-type')?.value,
+                windowMaterial: row.querySelector('.window-material')?.value,
+                costWindowType: row.querySelector('.cost-window-type')?.value,
+                sillCost: row.querySelector('.sill-cost')?.value,
+                glazingType: row.querySelector('.glazing-type')?.value,
+                pelmetCost: row.querySelector('.pelmet-cost')?.value,
+                fasciaCost: row.querySelector('.fascia-cost')?.value,
+                bearersCost: row.querySelector('.bearers-cost')?.value,
+                curtainCost: row.querySelector('.curtain-cost')?.value,
+                totalCostWindows: row.querySelector('.total-cost-windows')?.value,
+
+                numDoors: row.querySelector('.num-doors')?.value,
+                doorType: row.querySelector('.door-type')?.value,
+                doorMaterial: row.querySelector('.door-material')?.value,
+                costDoorType: row.querySelector('.cost-door-type')?.value,
+                frameCost: row.querySelector('.frame-cost')?.value,
+                varnishCost: row.querySelector('.varnish-cost')?.value,
+                surfaceCost: row.querySelector('.surface-cost')?.value,
+                hardwareCost: row.querySelector('.hardware-cost')?.value,
+                totalCostDoors: row.querySelector('.total-cost-doors')?.value
+            });
+        });
+        localStorage.setItem('doorWindowData', JSON.stringify(data));
+        localStorage.setItem('totalDoorWindowCost', totalDoorWindowCostInput.value);
+    }
+
+    function loadDoorWindowData() {
+        const data = JSON.parse(localStorage.getItem('doorWindowData') || '[]');
+        const totalCost = localStorage.getItem('totalDoorWindowCost') || '0';
+        doorWindowTable.innerHTML = '';
+        data.forEach(item => {
+            const newRow = document.createElement('tr');
+            newRow.classList.add('door-window-row');
+            newRow.innerHTML = `
+                <td><input type="number" class="num-windows" value="${item.numWindows}"></td>
+                <td><select class="window-type"><option selected>${item.windowType}</option></select></td>
+                <td><select class="window-material"><option selected>${item.windowMaterial}</option></select></td>
+                <td><input type="number" class="cost-window-type" value="${item.costWindowType}"></td>
+                <td><input type="number" class="sill-cost" value="${item.sillCost}"></td>
+                <td><select class="glazing-type"><option selected>${item.glazingType}</option></select></td>
+                <td><input type="number" class="pelmet-cost" value="${item.pelmetCost}"></td>
+                <td><input type="number" class="fascia-cost" value="${item.fasciaCost}"></td>
+                <td><input type="number" class="bearers-cost" value="${item.bearersCost}"></td>
+                <td><input type="number" class="curtain-cost" value="${item.curtainCost}"></td>
+                <td><input type="number" class="total-cost-windows" value="${item.totalCostWindows}" readonly></td>
+
+                <td><input type="number" class="num-doors" value="${item.numDoors}"></td>
+                <td><select class="door-type"><option selected>${item.doorType}</option></select></td>
+                <td><select class="door-material"><option selected>${item.doorMaterial}</option></select></td>
+                <td><input type="number" class="cost-door-type" value="${item.costDoorType}"></td>
+                <td><input type="number" class="frame-cost" value="${item.frameCost}"></td>
+                <td><input type="number" class="varnish-cost" value="${item.varnishCost}"></td>
+                <td><input type="number" class="surface-cost" value="${item.surfaceCost}"></td>
+                <td><input type="number" class="hardware-cost" value="${item.hardwareCost}"></td>
+                <td><input type="number" class="total-cost-doors" value="${item.totalCostDoors}" readonly></td>
+            `;
+            doorWindowTable.appendChild(newRow);
+            newRow.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('input', () => {
+                    calculateTotalDoorWindowCost();
+                    saveDoorWindowData();
+                });
+            });
+        });
+        totalDoorWindowCostInput.value = parseFloat(totalCost).toFixed(2);
+    }
+
+    document.querySelectorAll('.door-window-row input, .door-window-row select').forEach(input => {
         input.addEventListener('input', calculateTotalDoorWindowCost);
     });
 
-    // Ensure buttons work properly
     document.getElementById('addDoorWindowRowButton').addEventListener('click', addDoorWindowRow);
     document.getElementById('deleteDoorWindowRowButton').addEventListener('click', deleteLastDoorWindowRow);
 
-    // Initial calculation in case values are pre-filled
+    loadDoorWindowData();
     calculateTotalDoorWindowCost();
 });
 
