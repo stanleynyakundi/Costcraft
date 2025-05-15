@@ -268,3 +268,26 @@ html, body {
   padding: var(--spacing-unit);
   box-sizing: border-box;
 }
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+#staircaseTable {
+    min-width: 1500px; /* or wider depending on column count */
+    border-collapse: collapse;
+}
+
+#staircaseTable th,
+#staircaseTable td {
+    padding: 8px;
+    min-width: 120px;
+    text-align: center;
+}
+
+#staircaseTable input,
+#staircaseTable select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
