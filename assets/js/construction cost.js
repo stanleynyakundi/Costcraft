@@ -3245,3 +3245,121 @@ document.addEventListener('DOMContentLoaded', (event) => {
         table.addEventListener('input', () => saveTableData(tableId, totalId));
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const slabTableBody = document.querySelector('#slabTable tbody');
+  const totalSlabCostInput = document.getElementById('totalSlabCost');
+
+  // Function to calculate volume and total cost for a slab row
+  function calculateSlabRow(row) {
+    const length = parseFloat(row.querySelector('.slab-length').value) || 0;
+    const width = parseFloat(row.querySelector('.slab-width').value) || 0;
+    const thickness = parseFloat(row.querySelector('.slab-thickness').value) || 0;
+    const costPerM3 = parseFloat(row.querySelector('.slab-cost-per-m3').value) || 0;
+    const formworkArea = parseFloat(row.querySelector('.slab-formwork-area').value) || 0;
+    const formworkCost = parseFloat(row.querySelector('.slab-formwork-cost').value) || 0;
+    const rebarWeight = parseFloat(row.querySelector('.slab-rebar-weight').value) || 0;
+    const rebarCostPerKg = parseFloat(row.querySelector('.slab-rebar-cost-per-kg').value) || 0;
+    const steelFabricationCost = parseFloat(row.querySelector('.slab-steel-fabrication-cost').value) || 0;
+
+    const volume = length * width * thickness;
+    const concreteCost = volume * costPerM3;
+    const rebarCost = rebarWeight * rebarCostPerKg;
+    const totalCost = concreteCost + formworkCost + rebarCost + steelFabricationCost;
+
+    row.querySelector('.slab-volume').value = volume.toFixed(2);
+    row.querySelector('.slab-total-cost').value = totalCost.toFixed(2);
+  }
+
+  // Function to recalculate total slab cost
+  function calculateTotalSlabCost() {
+    let total = 0;
+    document.querySelectorAll('#slabTable tbody tr').forEach(row => {
+      calculateSlabRow(row);
+      const rowTotal = parseFloat(row.querySelector('.slab-total-cost').value) || 0;
+      total += rowTotal;
+    });
+    totalSlabCostInput.value = total.toFixed(2);
+  }
+
+  // Function to add a new slab row
+  function addSlabRow(data = {}) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><input type="text" class="slab-name" value="${data.name || ''}"></td>
+      <td><input type="number" class="slab-length" value="${data.length || ''}"></td>
+      <td><input type="number" class="slab-width" value="${data.width || ''}"></td>
+      <td><input type="number" class="slab-thickness" value="${data.thickness || ''}"></td>
+      <td><input type="number" class="slab-volume" readonly></td>
+      <td><input type="number" class="slab-cost-per-m3" value="${data.costPerM3 || ''}"></td>
+      <td><input type="number" class="slab-formwork-area" value="${data.formworkArea || ''}"></td>
+      <td><input type="number" class="slab-formwork-cost" value="${data.formworkCost || ''}"></td>
+      <td><input type="number" class="slab-rebar-weight" value="${data.rebarWeight || ''}"></td>
+      <td><input type="number" class="slab-rebar-cost-per-kg" value="${data.rebarCostPerKg || ''}"></td>
+      <td><input type="number" class="slab-steel-fabrication-cost" value="${data.steelFabricationCost || ''}"></td>
+      <td><input type="number" class="slab-total-cost" readonly></td>
+      <td><button class="delete-slab-row-btn">Delete</button></td>
+    `;
+    slabTableBody.appendChild(row);
+
+    // Add event listeners to inputs for real-time calculation
+    row.querySelectorAll('input').forEach(input => {
+      if (!input.classList.contains('slab-volume') && !input.classList.contains('slab-total-cost')) {
+        input.addEventListener('input', calculateTotalSlabCost);
+      }
+    });
+
+    // Delete row functionality
+    row.querySelector('.delete-slab-row-btn').addEventListener('click', () => {
+      row.remove();
+      calculateTotalSlabCost();
+    });
+
+    // Initial calculation
+    calculateTotalSlabCost();
+  }
+
+  // Function to clear all slab rows
+  function clearSlabTable() {
+    slabTableBody.innerHTML = '';
+    totalSlabCostInput.value = '';
+  }
+
+  // Function to save slab data to localStorage
+  function saveSlabTable() {
+    const slabData = [];
+    document.querySelectorAll('#slabTable tbody tr').forEach(row => {
+      const data = {
+        name: row.querySelector('.slab-name').value,
+        length: row.querySelector('.slab-length').value,
+        width: row.querySelector('.slab-width').value,
+        thickness: row.querySelector('.slab-thickness').value,
+        costPerM3: row.querySelector('.slab-cost-per-m3').value,
+        formworkArea: row.querySelector('.slab-formwork-area').value,
+        formworkCost: row.querySelector('.slab-formwork-cost').value,
+        rebarWeight: row.querySelector('.slab-rebar-weight').value,
+        rebarCostPerKg: row.querySelector('.slab-rebar-cost-per-kg').value,
+        steelFabricationCost: row.querySelector('.slab-steel-fabrication-cost').value
+      };
+      slabData.push(data);
+    });
+    localStorage.setItem('slabData', JSON.stringify(slabData));
+    localStorage.setItem('totalSlabCost', totalSlabCostInput.value);
+    alert('Slab data saved successfully.');
+  }
+
+  // Function to load slab data from localStorage
+  function loadSlabTable() {
+    const slabData = JSON.parse(localStorage.getItem('slabData')) || [];
+    clearSlabTable();
+    slabData.forEach(data => addSlabRow(data));
+    totalSlabCostInput.value = localStorage.getItem('totalSlabCost') || '';
+  }
+
+  // Event listeners for buttons
+  document.getElementById('addSlabRowBtn').addEventListener('click', () => addSlabRow());
+  document.getElementById('clearSlabTableBtn').addEventListener('click', clearSlabTable);
+  document.getElementById('saveSlabTableBtn').addEventListener('click', saveSlabTable);
+  document.getElementById('loadSlabTableBtn').addEventListener('click', loadSlabTable);
+});
+
