@@ -291,19 +291,36 @@ html, body {
     box-sizing: border-box;
 }
 
-/* === GENERAL TABLE CONTAINER SCROLL ONLY === */
 .table-container {
+    width: 100%;
     overflow-x: auto;
-    max-width: 100%;
     margin-bottom: 2rem;
-    padding: 5px; /* Optional spacing around the table */
 }
 
-/* Make tables inside scrollable */
 .table-container table {
     width: 100%;
-    min-width: 1500px; /* Ensures horizontal scroll if table is wide */
+    min-width: 1200px;
     border-collapse: collapse;
+    border: 1px solid #ccc;
+    table-layout: fixed;
+}
+
+.table-container th,
+.table-container td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.table-container input,
+.table-container select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    font-size: 14px;
 }
 
 
