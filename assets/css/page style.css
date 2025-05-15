@@ -297,6 +297,10 @@ html, body {
     margin-bottom: 2rem;
 }
 
+.table-container .excel-table {
+    overflow-x: auto;
+}
+
 .table-container table {
     width: 100%;
     min-width: 1200px;
@@ -322,5 +326,4 @@ html, body {
     padding: 6px;
     font-size: 14px;
 }
-
 
