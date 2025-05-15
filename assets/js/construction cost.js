@@ -3096,6 +3096,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const totalExcavationCost = parseFloat(document.getElementById("totalExcavationCost").value) || 0;
         const totalRoofingCost = parseFloat(document.getElementById("totalRoofingCost").value) || 0;
         const totalFlooringCost = parseFloat(document.getElementById("totalFlooringCost").value) || 0;
+        const totalSlabCost = parseFloat(document.getElementById("totalSlabCost").value) || 0;
         const totalCeilingCost = parseFloat(document.getElementById("totalCeilingCost").value) || 0;
         const totalEquipmentCost = parseFloat(document.getElementById("totalEquipmentCost").value) || 0;
         const estimatedContingencyCost = parseFloat(document.getElementById("estimatedContingencyCost").value) || 0;
@@ -3103,7 +3104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const totalConstructionCost = totalBeamCost + totalColumnCost  + totalBaseCost + totalWallingCost + totalDoorWindowCost +
             totalFoundationCost + totalExcavationCost + totalRoofingCost + totalFlooringCost + totalCeilingCost +
-            totalEquipmentCost + estimatedContingencyCost + totalOverheadCost;
+            totalEquipmentCost + estimatedContingencyCost + totalSlabCost + totalOverheadCost;
 
         document.getElementById("totalConstructionCost").value = totalConstructionCost.toFixed(2);
     }
