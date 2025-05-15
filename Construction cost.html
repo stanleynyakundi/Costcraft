@@ -400,46 +400,112 @@
         </div>
         
         <!-- Doors and Windows -->
-        <div class="card">
-            <h2>Doors and Windows</h2>
-            <div class="excel-table">
-                <table id="doorWindowTable">
-                    <thead>
-                        <tr>
-                            <th>Number of Windows</th>
-                            <th>Type of Window</th>
-                            <th>Cost of Window Type ($)</th>
-                            <th>Total Cost of Windows ($)</th>
-                            <th>Number of Doors</th>
-                            <th>Type of Door</th>
-                            <th>Cost of Door Type ($)</th>
-                            <th>Total Cost of Doors ($)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="door-window-row">
-                            <td><input type="number" class="num-windows" placeholder="Number of Windows"></td>
-                            <td><input type="text" class="window-type" placeholder="Type of Window"></td>
-                            <td><input type="number" class="cost-window-type" placeholder="Cost of Window Type"></td>
-                            <td><input type="number" class="total-cost-windows" placeholder="Total Cost of Windows" readonly></td>
-                            <td><input type="number" class="num-doors" placeholder="Number of Doors"></td>
-                            <td><input type="text" class="door-type" placeholder="Type of Door"></td>
-                            <td><input type="number" class="cost-door-type" placeholder="Cost of Door Type"></td>
-                            <td><input type="number" class="total-cost-doors" placeholder="Total Cost of Doors" readonly></td>
-                        </tr>
-                    </tbody>
-                </table>
-        
-                <!-- Buttons for adding and deleting rows -->
-                <button id="addDoorWindowRowButton">Add Row</button>
-                <button id="deleteDoorWindowRowButton">Delete Last Row</button>
-        
-                <div class="total-cost">
-                    <label>Total Door and Window Cost:</label>
-                    <input type="text" id="totalDoorWindowCost" title="Total Door Window Cost" readonly>
-                </div>
-            </div>
+       <div class="table-container">
+    <div class="card">
+        <h2>Doors and Windows</h2>
+        <div class="excel-table">
+            <table id="doorWindowTable">
+                <thead>
+                    <tr>
+                        <th>Number of Windows</th>
+                        <th>Type of Window</th>
+                        <th>Window Material</th>
+                        <th>Cost of Window Type</th>
+                        <th>Window Sill Cost</th>
+                        <th>Glazing Type</th>
+                        <th>Pelmet Boxes Cost</th>
+                        <th>Fascia Cost</th>
+                        <th>Bearers Cost</th>
+                        <th>Curtain Track Cost</th>
+                        <th>Total Cost of Windows</th>
+                        <th>Number of Doors</th>
+                        <th>Type of Door</th>
+                        <th>Door Material</th>
+                        <th>Cost of Door Type</th>
+                        <th>Door Frame Cost</th>
+                        <th>Varnish Cost</th>
+                        <th>Timber Surface Cost</th>
+                        <th>Hardware Cost</th>
+                        <th>Total Cost of Doors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="door-window-row">
+                        <td><input type="number" class="num-windows"></td>
+                        <td>
+                            <select class="window-type">
+                                <option value="casement">Casement</option>
+                                <option value="sliding">Sliding</option>
+                                <option value="double-hung">Double-Hung</option>
+                                <option value="awning">Awning</option>
+                                <option value="bay">Bay</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="window-material">
+                                <option value="vinyl">Vinyl</option>
+                                <option value="aluminum">Aluminum</option>
+                                <option value="wood">Wood</option>
+                                <option value="fiberglass">Fiberglass</option>
+                                <option value="composite">Composite</option>
+                                <option value="wood-clad">Wood-Clad</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="cost-window-type"></td>
+                        <td><input type="number" class="sill-cost"></td>
+                        <td>
+                            <select class="glazing-type">
+                                <option value="float">Float Glass</option>
+                                <option value="tempered">Tempered Glass</option>
+                                <option value="laminated">Laminated Glass</option>
+                                <option value="coated">Coated Glass (Low-E)</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="pelmet-cost"></td>
+                        <td><input type="number" class="fascia-cost"></td>
+                        <td><input type="number" class="bearers-cost"></td>
+                        <td><input type="number" class="curtain-cost"></td>
+                        <td><input type="number" class="total-cost-windows" readonly></td>
+
+                        <td><input type="number" class="num-doors"></td>
+                        <td>
+                            <select class="door-type">
+                                <option value="panel">Panel Door</option>
+                                <option value="flush">Flush Door</option>
+                                <option value="french">French Door</option>
+                                <option value="sliding">Sliding Door</option>
+                                <option value="bifold">Bi-fold Door</option>
+                                <option value="pocket">Pocket Door</option>
+                                <option value="dutch">Dutch Door</option>
+                                <option value="pivot">Pivot Door</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="door-material">
+                                <option value="wood">Wood</option>
+                                <option value="steel">Steel</option>
+                                <option value="uPVC">uPVC</option>
+                                <option value="glass">Glass</option>
+                                <option value="composite">Composite</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="cost-door-type"></td>
+                        <td><input type="number" class="frame-cost"></td>
+                        <td><input type="number" class="varnish-cost"></td>
+                        <td><input type="number" class="surface-cost"></td>
+                        <td><input type="number" class="hardware-cost"></td>
+                        <td><input type="number" class="total-cost-doors" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addDoorWindowRowButton">Add Row</button>
+            <button id="deleteDoorWindowRowButton">Delete Last Row</button>
         </div>
+        <label>Total Door and Window Cost:</label>
+        <input type="number" id="totalDoorWindowCost" readonly>
+    </div>
+</div>
+
         
         <!-- Foundations Section -->
         <div class="table-container">
