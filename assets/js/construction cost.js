@@ -1771,7 +1771,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.querySelector("#staircaseTable tbody");
     const totalCostDisplay = document.getElementById("totalStaircaseCost");
