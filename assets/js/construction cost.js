@@ -31,12 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
         row.querySelector('.volume').value = volume.toFixed(3);
         row.querySelector('.formwork-area').value = formworkArea.toFixed(2);
 
-        // Individual cost components
+        // Cost calculations (EXCLUDING removed elements)
         const concreteCost = volume * concreteUnitCost;
         const steelCost = steelQuantity * steelUnitCost;
         const formworkCost = formworkArea * formworkUnitCost;
 
-        // Total per beam * number
         const totalCost = (concreteCost + steelCost + steelFabricationCost + formworkCost) * number;
 
         return totalCost;
@@ -48,34 +47,39 @@ document.addEventListener('DOMContentLoaded', function () {
             totalBeamCost += calculateRowCost(row);
         });
         totalBeamCostInput.value = totalBeamCost.toFixed(2);
+        saveData(); // Save after each calculation
     }
 
-    function addRow() {
+    function addRow(data = {}) {
         const newRow = document.createElement('tr');
         newRow.classList.add('row');
         newRow.innerHTML = `
-            <td><input type="text" class="beam-name" placeholder="Beam Name"></td>
-            <td><input type="number" class="height" placeholder="Height (mm)"></td>
-            <td><input type="number" class="width" placeholder="Width (mm)"></td>
+            <td><input type="text" class="beam-name" placeholder="Beam Name" value="${data['beam-name'] || ''}"></td>
+            <td><input type="number" class="height" placeholder="Height (mm)" value="${data['height'] || ''}"></td>
+            <td><input type="number" class="width" placeholder="Width (mm)" value="${data['width'] || ''}"></td>
             <td><input type="number" class="area" placeholder="Surface Area (m²)" readonly></td>
-            <td><input type="number" class="span" placeholder="Span (mm)"></td>
-            <td><input type="number" class="number" placeholder="Number"></td>
+            <td><input type="number" class="span" placeholder="Span (mm)" value="${data['span'] || ''}"></td>
+            <td><input type="number" class="number" placeholder="Number" value="${data['number'] || ''}"></td>
             <td><input type="number" class="volume" placeholder="Volume (m³)" readonly></td>
-            <td><input type="number" class="concrete-unit-cost" placeholder="Concrete Unit Cost"></td>
-            <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)"></td>
-            <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost (Ksh)"></td>
-            <td><input type="number" class="steel-fabrication-cost" placeholder="Steel Fabrication Cost (Ksh)"></td>
+            <td><input type="number" class="concrete-unit-cost" placeholder="Concrete Unit Cost" value="${data['concrete-unit-cost'] || ''}"></td>
+            <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)" value="${data['steel-quantity'] || ''}"></td>
+            <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost (Ksh)" value="${data['steel-unit-cost'] || ''}"></td>
+            <td><input type="number" class="steel-fabrication-cost" placeholder="Steel Fabrication Cost (Ksh)" value="${data['steel-fabrication-cost'] || ''}"></td>
+            <td><input type="number" class="steel-labor-cost" placeholder="Steel Labor Cost (Ksh)" value="${data['steel-labor-cost'] || ''}"></td>
+            <td><input type="number" class="steel-overheads-cost" placeholder="Steel Overheads Cost (Ksh)" value="${data['steel-overheads-cost'] || ''}"></td>
+            <td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost (Ksh)" value="${data['binding-wire-cost'] || ''}"></td>
             <td><input type="number" class="formwork-area" placeholder="Formwork Area (m²)" readonly></td>
-            <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
+            <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)" value="${data['formwork-unit-cost'] || ''}"></td>
+            <td><input type="number" class="plastering-cost" placeholder="Plastering Cost (Ksh)" value="${data['plastering-cost'] || ''}" readonly></td>
+            <td><input type="number" class="beam-labor-cost" placeholder="Beam Labor Cost" value="${data['beam-labor-cost'] || ''}"></td>
         `;
         beamTable.appendChild(newRow);
 
-        // Reattach listeners
         newRow.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', calculateTotalBeamCost);
         });
 
-        console.log("New row added.");
+        calculateTotalBeamCost();
     }
 
     function deleteLastRow() {
@@ -88,28 +92,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Attach listeners to initial row
-    document.querySelectorAll('.row input').forEach(input => {
-        input.addEventListener('input', calculateTotalBeamCost);
-    });
-
-    document.getElementById('addRowButton').addEventListener('click', addRow);
-    document.getElementById('deleteRowButton').addEventListener('click', deleteLastRow);
-
-    calculateTotalBeamCost();
-
-    // Clear inputs
-    document.getElementById('clearAllButton').addEventListener('click', function () {
+    function clearAllInputs() {
         document.querySelectorAll('#beamTable tbody .row').forEach(row => {
             row.querySelectorAll('input').forEach(input => {
                 input.value = '';
             });
         });
         totalBeamCostInput.value = '';
+        localStorage.removeItem('beamData');
         console.log("All inputs cleared.");
-    });
-});
+    }
 
+    function saveData() {
+        const rowsData = [];
+        document.querySelectorAll('.row').forEach(row => {
+            const inputs = row.querySelectorAll('input');
+            const rowData = {};
+            inputs.forEach(input => {
+                rowData[input.className] = input.value;
+            });
+            rowsData.push(rowData);
+        });
+        localStorage.setItem('beamData', JSON.stringify(rowsData));
+    }
+
+    function loadData() {
+        const saved = localStorage.getItem('beamData');
+        if (saved) {
+            const rowsData = JSON.parse(saved);
+            beamTable.innerHTML = ''; // Clear existing
+            rowsData.forEach(rowData => addRow(rowData));
+        }
+    }
+
+    document.getElementById('addRowButton').addEventListener('click', () => addRow());
+    document.getElementById('deleteRowButton').addEventListener('click', deleteLastRow);
+    document.getElementById('clearAllButton').addEventListener('click', clearAllInputs);
+
+    loadData();
+});
 
 
 document.addEventListener('DOMContentLoaded', function () {
