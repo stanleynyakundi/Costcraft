@@ -291,33 +291,3 @@ html, body {
     box-sizing: border-box;
 }
 
-/* General table container styling */
-.table-container {
-    overflow-x: auto;
-    margin: 20px 0;
-    padding: 10px;
-    max-width: 100%;
-}
-
-/* Ensure table layout is spacious and scrolls horizontally if needed */
-.table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 1200px;
-}
-
-.table-container th,
-.table-container td {
-    padding: 6px;
-    text-align: left;
-    border: 1px solid #ddd;
-    white-space: nowrap;
-}
-
-.table-container input,
-.table-container select {
-    width: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-}
-
