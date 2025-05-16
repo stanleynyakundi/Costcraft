@@ -185,22 +185,22 @@ row.querySelector('.binding-wire-cost').value = bindingWireCost.toFixed(2);
         const newRow = document.createElement('tr');
         newRow.classList.add('row');
         newRow.innerHTML = `
-            <td><input type="text" class="column-name" placeholder="Column Name"></td>
-            <td><input type="number" class="width" placeholder="Width (mm)"></td>
-            <td><input type="number" class="depth" placeholder="Depth (mm)"></td>
-            <td><input type="number" class="area" placeholder="Area (m²)" readonly></td>
-            <td><input type="number" class="height" placeholder="Height (mm)"></td>
-            <td><input type="number" class="number" placeholder="Number"></td>
-            <td><input type="number" class="volume" placeholder="Volume (m³)" readonly></td>
-            <td><input type="number" class="concrete-unit-cost" placeholder="Concrete Unit Cost (Ksh)"></td>
-            <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)"></td>
-            <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost (Ksh)"></td>
-            <td><input type="number" class="steel-fabrication-cost" placeholder="Steel Fabrication Cost (Ksh)"></td>
-            <td><input type="number" class="steel-labor-cost" placeholder="Steel Labor Cost (Ksh)"></td>
-            <td><input type="number" class="steel-overheads-cost" placeholder="Steel Overheads Cost (Ksh)"></td>
-            <td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost (Ksh)"></td>
-            <td><input type="number" class="formwork-area" placeholder="Formwork Area (m²)" readonly></td>
-            <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
+             <td><input type="text" class="column-name" placeholder="Column Name"></td>
+    <td><input type="number" class="width" placeholder="Width (mm)"></td>
+    <td><input type="number" class="depth" placeholder="Depth (mm)"></td>
+    <td><input type="number" class="area" placeholder="Area (sq mm)" readonly></td>
+    <td><input type="number" class="height" placeholder="Height (mm)"></td>
+    <td><input type="number" class="number" placeholder="Number"></td>
+    <td><input type="number" class="volume" placeholder="Volume (cu mm)" readonly></td>
+    <td><input type="number" class="concrete-unit-cost" placeholder="Concrete Unit Cost (Ksh)"></td>
+    <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)"></td>
+    <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost (Ksh)"></td>
+    <td><input type="number" class="steel-links-quantity" placeholder="Links Quantity"></td>
+    <td><input type="number" class="steel-links-cost" placeholder="Links Cost" readonly></td>
+<td><input type="number" class="binding-wire-quantity" placeholder="Binding Wire Qty (kg)"></td>
+<td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost (Ksh)" readonly></td>
+    <td><input type="number" class="formwork-area" placeholder="Formwork Area (sq mm)" readonly></td>
+    <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
         `;
         columnTableBody.appendChild(newRow);
 
