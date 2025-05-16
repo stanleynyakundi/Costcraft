@@ -6,14 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function calculateRowCost(row) {
         const height = parseFloat(row.querySelector('.height')?.value) || 0;
-        const width = parseFloat(row.querySelector('.width')?.value) || 0;document.addEventListener('DOMContentLoaded', function () {
-    console.log("Script Loaded and DOM is Ready");
-
-    const beamTable = document.getElementById('beamTable').querySelector('tbody');
-    const totalBeamCostInput = document.getElementById('totalBeamCost');
-
-    function calculateRowCost(row) {
-        const height = parseFloat(row.querySelector('.height')?.value) || 0;
         const width = parseFloat(row.querySelector('.width')?.value) || 0;
         const span = parseFloat(row.querySelector('.span')?.value) || 0;
         const number = parseFloat(row.querySelector('.number')?.value) || 0;
@@ -22,11 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const steelQuantity = parseFloat(row.querySelector('.steel-quantity')?.value) || 0;
         const steelUnitCost = parseFloat(row.querySelector('.steel-unit-cost')?.value) || 0;
         const steelFabricationCost = parseFloat(row.querySelector('.steel-fabrication-cost')?.value) || 0;
-        const steelLaborCost = parseFloat(row.querySelector('.steel-labor-cost')?.value) || 0;
-        const steelOverheadsCost = parseFloat(row.querySelector('.steel-overheads-cost')?.value) || 0;
-        const bindingWireCost = parseFloat(row.querySelector('.binding-wire-cost')?.value) || 0;
         const formworkUnitCost = parseFloat(row.querySelector('.formwork-unit-cost')?.value) || 0;
-        const beamLaborCost = parseFloat(row.querySelector('.beam-labor-cost')?.value) || 0;
 
         // Convert dimensions to meters
         const heightM = height / 1000;
@@ -37,13 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const area = heightM * widthM;
         const volume = area * spanM;
         const formworkArea = 2 * (heightM * spanM) + 2 * (widthM * spanM);
-        const plasteringCost = formworkArea * 150; // Example: Ksh 150 per m²
 
         // Populate calculated fields
         row.querySelector('.area').value = area.toFixed(2);
         row.querySelector('.volume').value = volume.toFixed(3);
         row.querySelector('.formwork-area').value = formworkArea.toFixed(2);
-        row.querySelector('.plastering-cost').value = plasteringCost.toFixed(2);
 
         // Individual cost components
         const concreteCost = volume * concreteUnitCost;
@@ -51,8 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const formworkCost = formworkArea * formworkUnitCost;
 
         // Total per beam * number
-        const totalCost = (concreteCost + steelCost + steelFabricationCost + steelLaborCost +
-            steelOverheadsCost + bindingWireCost + formworkCost + plasteringCost + beamLaborCost) * number;
+        const totalCost = (concreteCost + steelCost + steelFabricationCost + formworkCost) * number;
 
         return totalCost;
     }
@@ -80,13 +65,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <td><input type="number" class="steel-quantity" placeholder="Steel Quantity (kg)"></td>
             <td><input type="number" class="steel-unit-cost" placeholder="Steel Unit Cost (Ksh)"></td>
             <td><input type="number" class="steel-fabrication-cost" placeholder="Steel Fabrication Cost (Ksh)"></td>
-            <td><input type="number" class="steel-labor-cost" placeholder="Steel Labor Cost (Ksh)"></td>
-            <td><input type="number" class="steel-overheads-cost" placeholder="Steel Overheads Cost (Ksh)"></td>
-            <td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost (Ksh)"></td>
             <td><input type="number" class="formwork-area" placeholder="Formwork Area (m²)" readonly></td>
             <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
-            <td><input type="number" class="plastering-cost" placeholder="Plastering Cost (Ksh)" readonly></td>
-            <td><input type="number" class="beam-labor-cost" placeholder="Beam Labor Cost"></td>
         `;
         beamTable.appendChild(newRow);
 
@@ -117,22 +97,18 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('deleteRowButton').addEventListener('click', deleteLastRow);
 
     calculateTotalBeamCost();
-});
-function clearAllInputs() {
-    document.querySelectorAll('#beamTable tbody .row').forEach(row => {
-        row.querySelectorAll('input').forEach(input => {
-            if (!input.readOnly) {
-                input.value = '';
-            } else {
-                input.value = ''; // Also clear readonly cells; they will recalculate on next input
-            }
-        });
-    });
-    totalBeamCostInput.value = '';
-    console.log("All inputs cleared.");
-}
 
-document.getElementById('clearAllButton').addEventListener('click', clearAllInputs);
+    // Clear inputs
+    document.getElementById('clearAllButton').addEventListener('click', function () {
+        document.querySelectorAll('#beamTable tbody .row').forEach(row => {
+            row.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+        });
+        totalBeamCostInput.value = '';
+        console.log("All inputs cleared.");
+    });
+});
 
 
 
