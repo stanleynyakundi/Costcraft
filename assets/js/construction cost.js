@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const steelLinksQty = parseFloat(row.querySelector('.steel-links-qty')?.value) || 0;
     const bindingWireQty = parseFloat(row.querySelector('.binding-wire-qty')?.value) || 0;
-    const bindingWireCost = parseFloat(row.querySelector('.binding-wire-cost')?.value) || 0;
-
+    const bindingWireCost = bindingWireQuantity * 154;
+row.querySelector('.binding-wire-cost').value = bindingWireCost.toFixed(2);
     const formworkUnitCost = parseFloat(row.querySelector('.formwork-unit-cost')?.value) || 0;
 
     // Convert mm to meters
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const steelUnitCost = parseFloat(row.querySelector('.steel-unit-cost')?.value) || 0;
     const steelLinksQuantity = parseFloat(row.querySelector('.steel-links-quantity')?.value) || 0;
 const bindingWireQuantity = parseFloat(row.querySelector('.binding-wire-quantity')?.value) || 0;
-const bindingWireCost = bindingWireQuantity * 160;
+const bindingWireCost = bindingWireQuantity * 154;
 row.querySelector('.binding-wire-cost').value = bindingWireCost.toFixed(2);
     const formworkUnitCost = parseFloat(row.querySelector('.formwork-unit-cost')?.value) || 0;
 
