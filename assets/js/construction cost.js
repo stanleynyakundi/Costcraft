@@ -133,53 +133,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalColumnCostInput = document.getElementById('totalColumnCost');
 
     function calculateRowCost(row) {
-        // Get input values (defaulting to 0 if empty)
-        const width = parseFloat(row.querySelector('.width')?.value) || 0;
-        const depth = parseFloat(row.querySelector('.depth')?.value) || 0;
-        const height = parseFloat(row.querySelector('.height')?.value) || 0;
-        const number = parseFloat(row.querySelector('.number')?.value) || 0;
+    const width = parseFloat(row.querySelector('.width')?.value) || 0;
+    const depth = parseFloat(row.querySelector('.depth')?.value) || 0;
+    const height = parseFloat(row.querySelector('.height')?.value) || 0;
+    const number = parseFloat(row.querySelector('.number')?.value) || 0;
 
-        const concreteUnitCost = parseFloat(row.querySelector('.concrete-unit-cost')?.value) || 0;
-        const steelQuantity = parseFloat(row.querySelector('.steel-quantity')?.value) || 0;
-        const steelUnitCost = parseFloat(row.querySelector('.steel-unit-cost')?.value) || 0;
-        const steelFabricationCost = parseFloat(row.querySelector('.steel-fabrication-cost')?.value) || 0;
-        const steelLaborCost = parseFloat(row.querySelector('.steel-labor-cost')?.value) || 0;
-        const steelOverheadsCost = parseFloat(row.querySelector('.steel-overheads-cost')?.value) || 0;
-        const bindingWireCost = parseFloat(row.querySelector('.binding-wire-cost')?.value) || 0;
-        const formworkUnitCost = parseFloat(row.querySelector('.formwork-unit-cost')?.value) || 0;
-        const columnLaborCost = parseFloat(row.querySelector('.column-labor-cost')?.value) || 0;
+    const concreteUnitCost = parseFloat(row.querySelector('.concrete-unit-cost')?.value) || 0;
+    const steelQuantity = parseFloat(row.querySelector('.steel-quantity')?.value) || 0;
+    const steelUnitCost = parseFloat(row.querySelector('.steel-unit-cost')?.value) || 0;
+    const steelLinksQuantity = parseFloat(row.querySelector('.steel-links-quantity')?.value) || 0;
+const bindingWireQuantity = parseFloat(row.querySelector('.binding-wire-quantity')?.value) || 0;
+const bindingWireCost = bindingWireQuantity * 160;
+row.querySelector('.binding-wire-cost').value = bindingWireCost.toFixed(2);
+    const formworkUnitCost = parseFloat(row.querySelector('.formwork-unit-cost')?.value) || 0;
 
-        // Convert dimensions from mm to m for calculations
-        const widthM = width / 1000;
-        const depthM = depth / 1000;
-        const heightM = height / 1000;
+    const widthM = width / 1000;
+    const depthM = depth / 1000;
+    const heightM = height / 1000;
 
-        // Calculate area (in m²) from width and depth
-        const area = widthM * depthM;
-        // Calculate volume of concrete (in cubic meters): volume = area * height
-        const volume = area * heightM;
-        // Calculate formwork area (in m²): perimeter * height (for a rectangular column)
-        const formworkArea = 2 * (widthM + depthM) * heightM;
-        // Calculate plastering cost: assume a fixed rate of 150 Ksh per m²
-        const plasteringCost = formworkArea * 150;
+    const area = widthM * depthM;
+    const volume = area * heightM;
+    const formworkArea = 2 * (widthM + depthM) * heightM;
 
-        // Populate the readonly calculated fields in the row
-        row.querySelector('.area').value = area.toFixed(2);
-        row.querySelector('.volume').value = volume.toFixed(3);
-        row.querySelector('.formwork-area').value = formworkArea.toFixed(2);
-        row.querySelector('.plastering-cost').value = plasteringCost.toFixed(2);
+    // Populate calculated fields
+    row.querySelector('.area').value = area.toFixed(2);
+    row.querySelector('.volume').value = volume.toFixed(3);
+    row.querySelector('.formwork-area').value = formworkArea.toFixed(2);
 
-        // Calculate cost components
-        const concreteCost = volume * concreteUnitCost;
-        const steelCost = steelQuantity * steelUnitCost;
-        const formworkCost = formworkArea * formworkUnitCost;
+    // New: Calculate steel links cost
+    const steelLinksCost = steelLinksQuantity * 140;
+    row.querySelector('.steel-links-cost').value = steelLinksCost.toFixed(2);
 
-        // Total cost per column = sum of costs times the number of columns
-        const totalCost = (concreteCost + steelCost + steelFabricationCost + steelLaborCost +
-            steelOverheadsCost + bindingWireCost + formworkCost + plasteringCost + columnLaborCost) * number;
+    // Individual component costs
+    const concreteCost = volume * concreteUnitCost;
+    const steelCost = steelQuantity * steelUnitCost;
+    const formworkCost = formworkArea * formworkUnitCost;
 
-        return totalCost;
-    }
+   const totalCost = (concreteCost + steelCost + steelLinksCost + bindingWireCost + formworkCost) * number;
+    return totalCost;
+}
+
 
     function calculateTotalColumnCost() {
         let totalCost = 0;
@@ -209,8 +202,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <td><input type="number" class="binding-wire-cost" placeholder="Binding Wire Cost (Ksh)"></td>
             <td><input type="number" class="formwork-area" placeholder="Formwork Area (m²)" readonly></td>
             <td><input type="number" class="formwork-unit-cost" placeholder="Formwork Unit Cost (Ksh)"></td>
-            <td><input type="number" class="plastering-cost" placeholder="Plastering Cost (Ksh)" readonly></td>
-            <td><input type="number" class="column-labor-cost" placeholder="Column Labor Cost (Ksh)"></td>
         `;
         columnTableBody.appendChild(newRow);
 
@@ -258,6 +249,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial calculation in case any values are pre-filled
     calculateTotalColumnCost();
 });
+
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
