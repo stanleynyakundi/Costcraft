@@ -715,7 +715,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let costPerCubicMeter = parseFloat(row.cells[5]?.querySelector("input")?.value) || 0;
             let volumeField = row.cells[4]?.querySelector("input");
 
-            let volume = (length * width * depth) / 1_000_000; // Convert mm³ to m³
+            let volume = (length * width * depth) / 1_000_000-000; // Convert mm³ to m³
             if (volumeField) {
                 volumeField.value = volume.toFixed(2); // Display volume in the row
             }
